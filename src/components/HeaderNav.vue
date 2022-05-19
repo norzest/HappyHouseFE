@@ -6,12 +6,12 @@
       </router-link>
     </div>
     <div id="navbar">
-      <router-link to="/about">About</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">아파트</router-link>
+      <router-link to="/about">관심매물</router-link>
+      <router-link to="/about">게시판</router-link>
     </div>
     <div v-if="true" id="guest">
-      <router-link to="/about">login</router-link>
+      <router-link to="/login">login</router-link>
       <router-link to="/about">join</router-link>
     </div>
     <div v-else id="user">
@@ -27,16 +27,24 @@ export default {};
 <style scope>
 header {
   width: 100%;
-  background-color: #996a54;
-  height: 80px;
+  background-color: transparent;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 20px;
+  position: fixed;
+  top: 0;
 }
 
 header a {
   color: white;
+}
+header a:hover {
+  color: white;
+}
+header a {
+  font-weight: 600;
 }
 
 header #logo,
@@ -44,7 +52,7 @@ header #guest {
   padding: 0 20px;
 }
 #logo img {
-  width: 90px;
+  width: 100px;
 }
 
 #navbar {
@@ -62,6 +70,9 @@ header #guest {
 }
 
 @media screen and (max-width: 768px) {
+  header {
+    background-color: #996a54;
+  }
   #navbar,
   #guest,
   #user {

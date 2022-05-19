@@ -13,9 +13,11 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:8080/happyhouse/test/api").then(({ data }) => {
-      this.token = data;
-    });
+    axios
+      .get("http://localhost:8080/happyhouse/member/login")
+      .then(({ data }) => {
+        this.token = data;
+      });
   },
 };
 </script>
