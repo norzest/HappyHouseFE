@@ -2,35 +2,41 @@
   <div class="loginform">
     <div>
       <label for="id">아이디</label>
-      <input type="text" id="id" name="id" v-model="id" /><br />
+      <input type="text" id="id" name="id" v-model="user.id" /><br />
       <label for="pwd">비밀번호</label>
-      <input type="password" id="pwd" name="pwd" v-model="pwd" /><br />
+      <input type="password" id="pwd" name="pwd" v-model="user.pwd" /><br />
       <button @click="loginMethod">로그인</button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapActions } from "vuex";
+
+const memberStore = "memberStore";
+
 export default {
+  name: "LoginView",
   data() {
     return {
-      id: "",
-      pwd: "",
+      user: {
+        id: "",
+        pwd: "",
+      },
     };
   },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "isLoginError"]),
+  },
   methods: {
-    loginMethod() {
-      axios
-        .get("http://localhost:8080/happyhouse/member/login", {
-          params: {
-            id: this.id,
-            password: this.pwd,
-          },
-        })
-        .then(({ data }) => {
-          console.log(data);
-        });
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    async loginMethod() {
+      await this.userConfirm(this.user);
+      let token = sessionStorage.getItem("access-token");
+      if (this.isLogin) {
+        await this.getUserInfo(token);
+        this.$router.push({ name: "home" });
+      }
     },
   },
 };
