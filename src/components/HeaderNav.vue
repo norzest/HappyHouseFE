@@ -10,12 +10,12 @@
       <router-link to="/about">관심매물</router-link>
       <router-link to="/about">게시판</router-link>
     </div>
-    <div v-if="true" id="guest">
+    <div v-if="false" id="guest">
       <router-link to="/login">login</router-link>
       <router-link to="/about">join</router-link>
     </div>
     <div v-else id="user">
-      <div class="user-img"></div>
+      <div class="user-img">로그아웃</div>
     </div>
   </header>
 </template>
@@ -27,7 +27,8 @@ export default {};
 <style scope>
 header {
   width: 100%;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: #996a54;
   height: 90px;
   display: flex;
   align-items: center;
@@ -40,9 +41,7 @@ header {
 header a {
   color: white;
 }
-header a:hover {
-  color: white;
-}
+
 header a {
   font-weight: 600;
 }

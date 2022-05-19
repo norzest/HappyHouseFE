@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <label for="id">아이디</label>
-    <input type="text" id="id" name="id" v-model="id" /><br />
-    <label for="pwd">비밀번호</label>
-    <input type="password" id="pwd" name="pwd" v-model="pwd" /><br />
-    <button @click="loginMethod">로그인</button>
+  <div class="loginform">
+    <div>
+      <label for="id">아이디</label>
+      <input type="text" id="id" name="id" v-model="id" /><br />
+      <label for="pwd">비밀번호</label>
+      <input type="password" id="pwd" name="pwd" v-model="pwd" /><br />
+      <button @click="loginMethod">로그인</button>
+    </div>
   </div>
 </template>
 
@@ -34,4 +36,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.loginform {
+  margin-top: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
