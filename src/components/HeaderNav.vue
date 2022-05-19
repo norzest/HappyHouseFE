@@ -10,9 +10,9 @@
       <router-link to="/about">관심매물</router-link>
       <router-link to="/about">게시판</router-link>
     </div>
-    <div v-if="false" id="guest">
+    <div v-if="true" id="guest">
       <router-link to="/login">login</router-link>
-      <router-link to="/about">join</router-link>
+      <router-link to="/join">join</router-link>
     </div>
     <div v-else id="user">
       <div class="user-img">로그아웃</div>
