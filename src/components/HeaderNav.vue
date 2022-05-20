@@ -6,7 +6,7 @@
       </router-link>
     </div>
     <div id="navbar">
-      <router-link to="/about">아파트</router-link>
+      <router-link to="/map">아파트</router-link>
       <router-link to="/about">관심매물</router-link>
       <router-link to="/board">자유게시판</router-link>
     </div>

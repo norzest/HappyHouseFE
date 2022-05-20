@@ -90,6 +90,11 @@ const routes = [
     ],
   },
   {
+    path: "/map",
+    name: "map",
+    component: () => import("@/views/MapView.vue"),
+  },
+  {
     path: "/about",
     name: "about",
     component: () => import("@/views/AboutView.vue"),

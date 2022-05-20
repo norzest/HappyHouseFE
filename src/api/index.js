@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL, APT_DEAL_URL } from "@/config";
+import { API_BASE_URL, KAKAO_MAP_URL } from "@/config";
 
 function apiInstance() {
   const instance = axios.create({
@@ -11,9 +11,9 @@ function apiInstance() {
   return instance;
 }
 
-function aptInstance() {
+function mapInstance() {
   const instance = axios.create({
-    baseURL: APT_DEAL_URL,
+    baseURL: KAKAO_MAP_URL,
     headers: {
       "Content-type": "application/json",
     },
@@ -21,4 +21,4 @@ function aptInstance() {
   return instance;
 }
 
-export { apiInstance, aptInstance };
+export { apiInstance, mapInstance };
