@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, findById } from "@/api/member.js";
+import { login, findById, memberDelete } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -60,23 +60,29 @@ const memberStore = {
         },
       );
     },
-    // async userDelete({ commit }, user) {
-    //   await memberDelete(
-    //     user.id,
-    //     user.pwd,
-    //     (response) => {
-    //       if (response.data.message === "success") {
-    //         let token = response.data["access-token"];
-    //         commit("SET_IS_LOGIN", false);
-    //         commit("SET_IS_LOGIN_ERROR", false);
-    //         sessionStorage.removeItem("access-token", token);
-    //       } else {
-    //         commit("SET_IS_LOGIN_ERROR", true);
-    //       }
-    //     },
-    //     () => {},
-    //   );
-    // },
+    async userDelete({ commit }, user) {
+      await memberDelete(
+        user.id,
+        user.pwd,
+        (response) => {
+          if (response.data.message === "success") {
+            let token = response.data["access-token"];
+            commit("SET_IS_LOGIN", false);
+            commit("SET_IS_LOGIN_ERROR", false);
+            sessionStorage.removeItem("access-token", token);
+          } else {
+            commit("SET_IS_LOGIN_ERROR", true);
+          }
+        },
+        () => {},
+      );
+    },
+    userLogout({ commit }) {
+      sessionStorage.removeItem("access-token");
+      commit("SET_USER_INFO", null);
+      commit("SET_IS_LOGIN", false);
+      commit("SET_IS_LOGIN_ERROR", false);
+    },
   },
 };
 
