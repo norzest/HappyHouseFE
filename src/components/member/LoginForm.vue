@@ -6,6 +6,7 @@
       <label for="pwd">비밀번호</label>
       <input type="password" id="pwd" name="pwd" v-model="user.pwd" /><br />
       <button @click="loginMethod">로그인</button>
+      <p>{{ noLogin }}</p>
     </div>
   </div>
 </template>
@@ -23,10 +24,14 @@ export default {
         id: "",
         pwd: "",
       },
+      error: "",
     };
   },
   computed: {
     ...mapState(memberStore, ["isLogin", "isLoginError"]),
+    noLogin() {
+      return this.error;
+    },
   },
   methods: {
     ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
@@ -36,6 +41,8 @@ export default {
       if (this.isLogin) {
         await this.getUserInfo(token);
         this.$router.push({ name: "home" });
+      } else {
+        this.error = "잘못된 아이디, 비밀번호입니다.";
       }
     },
   },
