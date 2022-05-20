@@ -2,10 +2,9 @@ import { apiInstance } from "./index.js";
 
 const api = apiInstance();
 
-async function join(user, success, fail) {
-  console.log(JSON.stringify(user));
+async function join(member, success, fail) {
   await api
-    .post(`/member/regist`, JSON.stringify(user))
+    .post(`/member/regist`, JSON.stringify(member))
     .then(success)
     .catch(fail);
 }
