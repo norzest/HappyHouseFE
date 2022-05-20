@@ -77,6 +77,12 @@ const memberStore = {
         () => {},
       );
     },
+    userLogout({ commit }, user) {
+      sessionStorage.removeItem("access-token", token);
+      commit("SET_USER_INFO", null);
+      commit("SET_IS_LOGIN", false);
+      commit("SET_IS_LOGIN_ERROR", false);
+    }
   },
 };
 
