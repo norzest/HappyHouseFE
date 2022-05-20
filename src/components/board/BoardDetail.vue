@@ -25,22 +25,29 @@ export default {
   data() {
     return {
       article: {},
-    }
+    };
   },
   created() {
-    this.article = {id="test", title="test", writerId="test", createAt="test", hit=1, content="test"};
+    this.article = {
+      id: "test",
+      title: "test",
+      writerId: "test",
+      createAt: "test",
+      hit: 1,
+      content: "test",
+    };
   },
   methods: {
     mvModifyArticle() {
-      this.$router.push({ name:"boardModify"});
+      this.$router.push({ name: "boardModify" });
     },
     deleteArticle() {
       alert("연결 테스트");
     },
     mvBoardList() {
-      this.$router.push({ name:"boardList"});
-    }
-  }
+      this.$router.push({ name: "boardList" });
+    },
+  },
 };
 </script>
 

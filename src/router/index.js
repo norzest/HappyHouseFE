@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "@/views/HomeView.vue";
 
 Vue.use(VueRouter);
 
@@ -53,6 +53,34 @@ const routes = [
         path: "modify",
         name: "memberModify",
         component: () => import("@/components/member/MemberProfileModify.vue"),
+      },
+    ],
+  },
+  {
+    path: "/board",
+    name: "board",
+    component: () => import("@/views/BoardView.vue"),
+    redirect: "/board/list",
+    children: [
+      {
+        path: "list",
+        name: "boardList",
+        component: () => import("@/components/board/BoardList.vue"),
+      },
+      {
+        path: "detail/:id",
+        name: "boardDetail",
+        component: () => import("@/components/board/BoardDetail.vue"),
+      },
+      {
+        path: "modify/:id",
+        name: "boardModify",
+        component: () => import("@/components/board/BoardModify.vue"),
+      },
+      {
+        path: "regist",
+        name: "boardRegister",
+        component: () => import("@/components/board/BoardRegister.vue"),
       },
     ],
   },
