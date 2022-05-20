@@ -30,19 +30,31 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/login",
-    name: "login",
-    component: () => import("../views/member/LoginView.vue"),
-  },
-  {
-    path: "/join",
-    name: "join",
-    component: () => import("../views/member/JoinView.vue"),
+    path: "/member",
+    name: "member",
+    component: () => import("@/views/MemberView.vue"),
+    children: [
+      {
+        path: "login",
+        name: "login",
+        component: () => import("@/components/member/LoginForm.vue"),
+      },
+      {
+        path: "join",
+        name: "join",
+        component: () => import("@/components/member/JoinForm.vue"),
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: () => import("@/components/member/MemberProfile.vue"),
+      },
+    ],
   },
   {
     path: "/about",
     name: "about",
-    component: () => import("../views/AboutView.vue"),
+    component: () => import("@/views/AboutView.vue"),
   },
 ];
 

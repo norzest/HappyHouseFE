@@ -16,7 +16,7 @@ import { mapState, mapActions } from "vuex";
 const memberStore = "memberStore";
 
 export default {
-  name: "LoginView",
+  name: "LoginForm",
   data() {
     return {
       user: {
