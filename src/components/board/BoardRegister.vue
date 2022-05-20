@@ -1,9 +1,18 @@
 <template>
-  <div></div>
+  <div>
+    <board-input-item type="register" />
+  </div>
 </template>
 
 <script>
-export default {};
+import BoardInputItem from "@/components/board/item/BoardInputItem.vue";
+
+export default {
+  name: "BoardRegister",
+  components: {
+    BoardInputItem,
+  },
+};
 </script>
 
 <style></style>
