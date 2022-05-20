@@ -1,7 +1,10 @@
 <template>
-  <div class="loginform">
-    <div>
-      <div>
+  <div class="joinform">
+    <div class="joinbox">
+      <div class="jointitle">
+        <img src="../../assets/img/logo_happyhouse.png" alt="" />
+      </div>
+      <div class="join">
         <label for="id">이름</label>
         <input
           type="text"
@@ -10,12 +13,9 @@
           v-model="member.name"
           ref="name"
         />
-      </div>
-      <div>
-        <label for="id">아이디</label>
-        <input type="text" id="id" name="id" v-model="member.id" ref="id" />
-      </div>
-      <div>
+        <div id="inputid" :class="{ ipid: ipid }">
+          <input type="text" id="id" name="id" v-model="member.id" ref="id" />
+        </div>
         <label for="pwd">비밀번호</label>
         <input
           type="password"
@@ -25,8 +25,7 @@
           ref="password"
         />
         <p id="pwd_tf">비밀번호는 6자 이상 20자 이하로 입력해주세요.</p>
-      </div>
-      <div>
+
         <label for="pwdchk">비밀번호 확인</label>
         <input
           type="password"
@@ -36,8 +35,7 @@
           ref="pwdchk"
         />
         <p id="pwd_check_tf"></p>
-      </div>
-      <div>
+
         <label for="phone" class="form-label">전화번호</label>
         <input
           type="tel"
@@ -47,8 +45,7 @@
           v-model="member.phone"
           ref="phone"
         />
-      </div>
-      <div>
+
         <label for="email" class="form-label">이메일</label>
         <input
           type="email"
@@ -58,8 +55,7 @@
           v-model="member.email"
           ref="email"
         />
-      </div>
-      <div>
+
         <label for="address" class="form-label">주소</label>
         <input
           type="text"
@@ -90,6 +86,11 @@ export default {
         address: "",
       },
     };
+  },
+  computed: {
+    ipid() {
+      return this.member.id ? true : false;
+    },
   },
   methods: {
     checkJoin() {
@@ -154,10 +155,67 @@ export default {
 };
 </script>
 
-<style>
-.loginform {
+<style scoped>
+.joinform {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  padding-top: 60px;
+}
+
+.joinbox {
+  background-color: #f3f2f0;
+  padding: 20px 70px 70px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.jointitle {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.jointitle img {
+  width: 130px;
+}
+
+.join {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding-left: 15px;
+  border: 1px solid gray;
+}
+button {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-top: 20px;
+  background-color: #996a54;
+  color: white;
+}
+
+#inputid::before {
+  content: "아이디";
+  font-size: 16px;
+  margin: 10px 15px;
+  height: 40px;
+  position: absolute;
+  padding: 6px 0;
+  color: #a7a7a7;
+}
+
+.ipid::before {
+  font-size: 10px;
+}
+.ipf {
+  padding: 14px 0 2px 15px !important;
 }
 </style>
