@@ -10,7 +10,7 @@
       <router-link to="/about">관심매물</router-link>
       <router-link to="/about">게시판</router-link>
     </div>
-    <div v-if="true" id="guest">
+    <div v-if="isLogin" id="guest">
       <router-link to="/login">login</router-link>
       <router-link to="/join">join</router-link>
     </div>
@@ -21,7 +21,14 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  computed: {
+    isLogin() {
+      return mapState.isLogin;
+    },
+  },
+};
 </script>
 
 <style scope>
