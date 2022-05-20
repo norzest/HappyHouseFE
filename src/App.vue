@@ -24,7 +24,7 @@ body::before {
   bottom: 0px;
   background: url("./assets/img/main_bg3.jpg");
   background-size: 100% 100%;
-  opacity: 0.7;
+  opacity: 0.5;
   z-index: -10;
 }
 body {
