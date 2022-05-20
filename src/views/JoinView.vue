@@ -91,9 +91,10 @@ export default {
           address: this.member.address,
           email: this.member.email,
         },
-        (data) => {
+        (response) => {
           let msg = "회원가입 중 문제가 발생했습니다.";
-          if (data === "success") {
+          console.log(response);
+          if (response.data.message === "success") {
             msg = "회원가입이 완료되었습니다.";
           }
           alert(msg);
