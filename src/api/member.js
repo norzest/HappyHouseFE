@@ -26,4 +26,23 @@ async function findById(userid, success, fail) {
   await api.get(`/member/info/${userid}`).then(success).catch(fail);
 }
 
-export { join, login, findById };
+async function modify(member, success, fail) {
+  await api
+    .put(`/member/modify`, JSON.stringify(member))
+    .then(success)
+    .catch(fail);
+}
+
+async function memberDelete(id, password, success, fail) {
+  await api
+    .delete(`/member/delete`, {
+      params: {
+        id: id,
+        password: password,
+      },
+    })
+    .then(success)
+    .catch(fail);
+}
+
+export { join, login, findById, modify, memberDelete };
