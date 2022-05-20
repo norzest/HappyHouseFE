@@ -101,15 +101,8 @@ export default {
         },
         () => {},
       );
-      this.$router.push("/login");
+      this.$router.push({ name: "login" });
     },
-
-    // async joinMethod() {
-    //   http.post("/member/regist", { params: this.member }).then(({ data }) => {
-
-    //     this.$router.push("/login");
-    //   });
-    // },
   },
 };
 </script>

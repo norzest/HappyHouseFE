@@ -26,7 +26,7 @@ async function findById(userid, success, fail) {
   await api.get(`/member/info/${userid}`).then(success).catch(fail);
 }
 
-async function modify(member, success, fail) {
+async function memberModify(member, success, fail) {
   await api
     .put(`/member/modify`, JSON.stringify(member))
     .then(success)
@@ -34,6 +34,7 @@ async function modify(member, success, fail) {
 }
 
 async function memberDelete(id, password, success, fail) {
+  console.log(id, password);
   await api
     .delete(`/member/delete`, {
       params: {
@@ -45,4 +46,4 @@ async function memberDelete(id, password, success, fail) {
     .catch(fail);
 }
 
-export { join, login, findById, modify, memberDelete };
+export { join, login, findById, memberModify, memberDelete };

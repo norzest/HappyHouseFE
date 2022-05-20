@@ -6,6 +6,7 @@
     <div>전화번호 : {{ userInfo.phone }}</div>
     <div>주소 : {{ userInfo.address }}</div>
     <router-link :to="{ name: 'memberModify' }">편집</router-link>
+    <router-link :to="{ name: 'memberDelete' }">회원탈퇴</router-link>
   </div>
 </template>
 

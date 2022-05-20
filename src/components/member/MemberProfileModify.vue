@@ -39,7 +39,7 @@
 </template>
 
 <script>
-// import { join } from "@/api/member.js";
+import { memberModify } from "@/api/member.js";
 export default {
   data() {
     return {
@@ -55,11 +55,29 @@ export default {
     };
   },
   created() {
-    console.log(this.$store.getters["memberStore/checkUserInfo"]);
     this.member = this.$store.getters["memberStore/checkUserInfo"];
   },
   methods: {
     modifyMethod() {
+      memberModify(
+        {
+          id: this.member.id,
+          name: this.member.name,
+          password: this.member.password,
+          phone: this.member.phone,
+          address: this.member.address,
+          email: this.member.email,
+        },
+        (response) => {
+          let msg = "회원 정보를 수정하던 중 문제가 발생했습니다.";
+          console.log(response);
+          if (response.data.message === "success") {
+            msg = "회원 정보 수정이 완료되었습니다.";
+          }
+          alert(msg);
+        },
+        () => {},
+      );
       this.$router.push({ name: "profile" });
     },
     //   join(
