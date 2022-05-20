@@ -2,6 +2,11 @@ import { apiInstance } from "./index.js";
 
 const api = apiInstance();
 
+function join(user, success, fail) {
+  console.log(JSON.stringify(user));
+  api.post(`/member/regist`, JSON.stringify(user)).then(success).catch(fail);
+}
+
 async function login(id, password, success, fail) {
   await api
     .get(`/member/login`, {
@@ -19,4 +24,4 @@ async function findById(userid, success, fail) {
   await api.get(`/member/info/${userid}`).then(success).catch(fail);
 }
 
-export { login, findById };
+export { join, login, findById };

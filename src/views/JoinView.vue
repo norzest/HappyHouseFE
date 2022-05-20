@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import http from "@/api/http";
+import { join } from "@/api/member.js";
 export default {
   data() {
     return {
@@ -82,15 +82,33 @@ export default {
   },
   methods: {
     joinMethod() {
-      http.post("/member/regist", { params: this.member }).then(({ data }) => {
-        let msg = "회원가입 중 문제가 발생했습니다.";
-        if (data === "success") {
-          msg = "회원가입이 완료되었습니다.";
-        }
-        alert(msg);
-        this.$router.push("/login");
-      });
+      join(
+        {
+          id: this.member.id,
+          name: this.member.name,
+          password: this.member.password,
+          phone: this.member.phone,
+          address: this.member.address,
+          email: this.member.email,
+        },
+        (data) => {
+          let msg = "회원가입 중 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "회원가입이 완료되었습니다.";
+          }
+          alert(msg);
+        },
+        () => {},
+      );
+      this.$router.push("/login");
     },
+
+    // async joinMethod() {
+    //   http.post("/member/regist", { params: this.member }).then(({ data }) => {
+
+    //     this.$router.push("/login");
+    //   });
+    // },
   },
 };
 </script>

@@ -77,8 +77,5 @@ header #guest {
   #user {
     display: none;
   }
-
-  #logo img {
-  }
 }
 </style>
