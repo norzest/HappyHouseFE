@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header-nav></header-nav>
-    <router-view />
+    <router-view id="main" />
   </div>
 </template>
 <script>
@@ -15,4 +15,7 @@ export default {
 </script>
 <style>
 @import url("@/assets/css/reset.css");
+#main {
+  margin-top: 90px;
+}
 </style>

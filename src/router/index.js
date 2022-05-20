@@ -49,6 +49,11 @@ const routes = [
         name: "profile",
         component: () => import("@/components/member/MemberProfile.vue"),
       },
+      {
+        path: "modify",
+        name: "memberModify",
+        component: () => import("@/components/member/MemberProfileModify.vue"),
+      },
     ],
   },
   {

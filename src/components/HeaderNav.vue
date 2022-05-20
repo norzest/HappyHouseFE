@@ -10,9 +10,9 @@
       <router-link to="/about">관심매물</router-link>
       <router-link to="/about">게시판</router-link>
     </div>
-    <div v-if="isLogin" id="member">
+    <div v-if="userInfo" id="member">
       <router-link to="/member/profile">profile</router-link>
-      <div class="user-img">로그아웃</div>
+      <button @click="logoutMethod">logout</button>
     </div>
     <div v-else id="guest">
       <router-link :to="{ name: 'login' }">login</router-link>
@@ -22,11 +22,17 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
+const memberStore = "memberStore";
 export default {
   computed: {
-    isLogin() {
-      return mapState.isLogin;
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
+  methods: {
+    ...mapActions(memberStore, ["userLogout"]),
+    logoutMethod() {
+      this.userLogout();
+      this.$router.push("/");
     },
   },
 };
@@ -55,7 +61,8 @@ header a {
 }
 
 header #logo,
-header #guest {
+header #guest,
+header #member {
   padding: 0 20px;
 }
 #logo img {
@@ -75,6 +82,10 @@ header #guest {
   display: inline-block;
   padding: 0 10px;
 }
+#member a {
+  display: inline-block;
+  padding: 0 10px;
+}
 
 @media screen and (max-width: 768px) {
   header {
@@ -82,7 +93,7 @@ header #guest {
   }
   #navbar,
   #guest,
-  #user {
+  #member {
     display: none;
   }
 }
