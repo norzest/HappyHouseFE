@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, findById } from "@/api/member.js";
+import { login, findById, memberDelete } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -77,12 +77,12 @@ const memberStore = {
         () => {},
       );
     },
-    userLogout({ commit }, user) {
-      sessionStorage.removeItem("access-token", token);
+    userLogout({ commit }) {
+      sessionStorage.removeItem("access-token");
       commit("SET_USER_INFO", null);
       commit("SET_IS_LOGIN", false);
       commit("SET_IS_LOGIN_ERROR", false);
-    }
+    },
   },
 };
 
