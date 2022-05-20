@@ -24,6 +24,7 @@
 
 <script>
 import BoardListItem from "@/components/board/item/BoardListItem";
+import { listArticle } from "@/api/board.js";
 
 export default {
   name: "BoardList",
@@ -36,9 +37,23 @@ export default {
     };
   },
   created() {
-    this.articles = [
-      { id: 1, title: "test", writerId: "test", createAt: "test", hit: 1 },
-    ];
+    let pg = 1;
+    let key = null;
+    let word = null;
+    let boardType = "free";
+
+    listArticle(
+      pg,
+      key,
+      word,
+      boardType,
+      (response) => {
+        this.articles = response.data.articles;
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
   },
   methods: {
     mvWrite() {
