@@ -83,6 +83,7 @@
             v-model="member.address"
             ref="address"
             :class="{ ipf: ipaddress }"
+            @keyup.enter="checkJoin"
           />
         </label>
         <button @click="checkJoin">회원가입</button>
@@ -239,7 +240,6 @@ button {
 .inputid::before {
   content: "아이디";
 }
-
 .inputpassword::before {
   content: "비밀번호";
 }
