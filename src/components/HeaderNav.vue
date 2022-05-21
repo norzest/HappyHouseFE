@@ -8,7 +8,7 @@
     <div id="navbar">
       <router-link to="/map">아파트</router-link>
       <router-link to="/about">관심매물</router-link>
-      <router-link to="/board">자유게시판</router-link>
+      <router-link to="/board">게시판</router-link>
     </div>
     <div v-if="userInfo" id="member">
       <router-link to="/member/profile">profile</router-link>
@@ -43,11 +43,11 @@ header {
   width: 100%;
   /* background-color: transparent; */
   background-color: #996a54;
-  height: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 18px;
   position: fixed;
   top: 0;
 }
@@ -66,7 +66,7 @@ header #member {
   padding: 0 20px;
 }
 #logo img {
-  width: 100px;
+  width: 95px;
 }
 
 #navbar {

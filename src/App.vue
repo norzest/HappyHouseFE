@@ -31,6 +31,6 @@ body {
   background-color: #f3f2f0;
 }
 #main {
-  margin-top: 90px;
+  margin-top: 80px;
 }
 </style>
