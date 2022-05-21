@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { login, findById, memberDelete } from "@/api/member.js";
+import { login, findById, memberModify, memberDelete } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -58,6 +58,15 @@ const memberStore = {
         (error) => {
           console.log(error);
         },
+      );
+    },
+    async userModify({ commit }, user) {
+      memberModify(
+        user,
+        (response) => {
+          commit("SET_USER_INFO", response.data.userInfo);
+        },
+        () => {},
       );
     },
     async userDelete({ commit }, user) {

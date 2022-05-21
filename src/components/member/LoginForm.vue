@@ -26,6 +26,7 @@
             name="pwd"
             v-model="user.pwd"
             :class="{ ipf: ippassword }"
+            @keyup.enter="loginMethod"
           />
         </label>
         <button @click="loginMethod">로그인</button>
