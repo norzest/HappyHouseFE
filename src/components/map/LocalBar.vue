@@ -2,21 +2,28 @@
   <div>
     <div class="row">
       <div class="col">
-        <select class="form-select" id="juso1">
-          <option>시/도</option>
-          <option v-for="sido in sidoList" :key="sido.sidoCode">
-            {{ sido.sidoName }}
+        <select class="form-select" v-model="sidoCode" @change="gugunList">
+          <option v-for="sido in sidos" :key="sido.value" :value="sido.value">
+            {{ sido.text }}
           </option>
         </select>
       </div>
       <div class="col">
-        <select class="form-select" id="juso2">
-          <option>시/군/구</option>
+        <select class="form-select" v-model="gugunCode" @change="dongList">
+          <option
+            v-for="gugun in guguns"
+            :key="gugun.value"
+            :value="gugun.value"
+          >
+            {{ gugun.text }}
+          </option>
         </select>
       </div>
       <div class="col">
-        <select class="form-select" id="juso3">
-          <option>읍/면/동</option>
+        <select class="form-select" v-model="dongCode">
+          <option v-for="dong in dongs" :key="dong.value" :value="dong.value">
+            {{ dong.text }}
+          </option>
         </select>
       </div>
     </div>
@@ -27,7 +34,9 @@
 </template>
 
 <script>
-import { getSido } from "@/api/local.js";
+import { mapState, mapActions, mapMutations } from "vuex";
+
+const localStore = "localStore";
 
 export default {
   name: "LocalBar",
@@ -35,20 +44,38 @@ export default {
     return {
       year: null,
       month: null,
-      sidoList: [],
-      gugunList: [],
-      dongList: [],
+      sidoCode: null,
+      gugunCode: null,
+      dongCode: null,
     };
   },
-  mounted() {
-    getSido(
-      (response) => {
-        this.sidoList = response.data;
-      },
-      (error) => {
-        console.log(error);
-      },
-    );
+  computed: {
+    ...mapState(localStore, ["sidos", "guguns", "dongs"]),
+  },
+  created() {
+    this.CLEAR_SIDO_LIST();
+    this.getSido();
+  },
+  methods: {
+    ...mapActions(localStore, ["getSido", "getGugun", "getDong"]),
+    ...mapMutations(localStore, [
+      "CLEAR_SIDO_LIST",
+      "CLEAR_GUGUN_LIST",
+      "CLEAR_DONG_LIST",
+    ]),
+
+    gugunList() {
+      console.log(this.sidoCode);
+      this.CLEAR_GUGUN_LIST();
+      this.gugunCode = null;
+      if (this.sidoCode) this.getGugun(this.sidoCode.substring(0, 2));
+    },
+    dongList() {
+      console.log(this.gugunCode);
+      this.CLEAR_DONG_LIST();
+      this.dongCode = null;
+      if (this.gugunCode) this.getDong(this.gugunCode.substring(0, 5));
+    },
   },
 };
 </script>
