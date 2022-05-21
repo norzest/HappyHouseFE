@@ -28,7 +28,7 @@
       </div>
     </div>
     <div>
-      <button>조회하기</button>
+      <button @click="searchApt">조회하기</button>
     </div>
   </div>
 </template>
@@ -37,6 +37,7 @@
 import { mapState, mapActions, mapMutations } from "vuex";
 
 const localStore = "localStore";
+const aptStore = "aptStore";
 
 export default {
   name: "LocalBar",
@@ -51,13 +52,17 @@ export default {
   },
   computed: {
     ...mapState(localStore, ["sidos", "guguns", "dongs"]),
+    ...mapState(aptStore, ["apts"]),
   },
   created() {
     this.CLEAR_SIDO_LIST();
+    this.CLEAR_GUGUN_LIST();
+    this.CLEAR_DONG_LIST();
     this.getSido();
   },
   methods: {
     ...mapActions(localStore, ["getSido", "getGugun", "getDong"]),
+    ...mapActions(aptStore, ["getAptList"]),
     ...mapMutations(localStore, [
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
@@ -67,6 +72,7 @@ export default {
     gugunList() {
       console.log(this.sidoCode);
       this.CLEAR_GUGUN_LIST();
+      this.CLEAR_DONG_LIST();
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode.substring(0, 2));
     },
@@ -75,6 +81,9 @@ export default {
       this.CLEAR_DONG_LIST();
       this.dongCode = null;
       if (this.gugunCode) this.getDong(this.gugunCode.substring(0, 5));
+    },
+    searchApt() {
+      if (this.dongCode) this.getAptList(this.dongCode);
     },
   },
 };

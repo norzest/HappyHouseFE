@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 import memberStore from "@/store/modules/memberStore.js";
 import localStore from "@/store/modules/localStore.js";
+import aptStore from "@/store/modules/aptStore.js";
 
 export default new Vuex.Store({
   state: {},
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   modules: {
     memberStore,
     localStore,
+    aptStore,
   },
   plugins: [
     createPersistedState({

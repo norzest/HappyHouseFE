@@ -4,13 +4,26 @@
 
 <script>
 import { KAKAO_MAP_URL } from "@/config";
+import { mapState } from "vuex";
+
+const aptStore = "aptStore";
 
 export default {
   name: "KaKaoMap",
   data() {
     return {
       map: null,
+      count: 0,
+      markerObjs: [],
     };
+  },
+  computed: {
+    ...mapState(aptStore, ["apts"]),
+  },
+  watch: {
+    apts() {
+      this.makeList();
+    },
   },
   mounted() {
     if (!window.kakao || !window.kakao.maps) {
@@ -28,23 +41,71 @@ export default {
   methods: {
     initMap() {
       const container = document.getElementById("map");
+      this.count = 0;
       const options = {
         center: new window.kakao.maps.LatLng(37.5642135, 127.0016985),
         level: 8,
       };
 
       this.map = new window.kakao.maps.Map(container, options);
+    },
+    makeList() {
+      // 마커 초기화
+      this.count = 0;
+      this.markerObjs.forEach((el) => el.marker.setMap(null));
+      this.markerObjs = [];
 
-      //var imageSrc =
-      //    "https://user-images.githubusercontent.com/57048162/158428602-3b9ee135-2fc8-4d52-ac52-114160e38409.png", // 마커이미지의 주소입니다
-      //  imageSize = new kakao.maps.Size(33, 45), // 마커이미지의 크기입니다
-      //  imageOption = { offset: new kakao.maps.Point(33, 45) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      // 마커 세팅
+      for (let item of this.apts) {
+        this.setMarker(item);
+      }
+    },
+    setMarker(item) {
+      var imageSrc =
+          "https://user-images.githubusercontent.com/57048162/158428602-3b9ee135-2fc8-4d52-ac52-114160e38409.png", // 마커이미지의 주소입니다
+        imageSize = new window.kakao.maps.Size(33, 45), // 마커이미지의 크기입니다
+        imageOption = { offset: new window.kakao.maps.Point(33, 45) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-      //var markerImage = new kakao.maps.MarkerImage(
-      //  imageSrc,
-      //  imageSize,
-      //  imageOption,
-      //);
+      var markerImage = new window.kakao.maps.MarkerImage(
+        imageSrc,
+        imageSize,
+        imageOption,
+      );
+
+      var coords = new window.kakao.maps.LatLng(item.lat, item.lng);
+      const obj = this.markerObjs.find(
+        (el) => el.marker.getTitle() == item.apt,
+      );
+      //let info;
+      let marker;
+      if (obj) {
+        marker = obj.marker;
+        //info = obj.info;
+        //kakao.maps.event.removeListener(marker, "click", makeClickListener);
+        obj.info.push(item.aptInfo);
+        //kakao.maps.event.addListener(marker, "click", makeClickListener(map, marker, info));
+      } else {
+        marker = new window.kakao.maps.Marker({
+          map: this.map,
+          position: coords,
+          clickable: true,
+          title: item.apt,
+          image: markerImage,
+        });
+        this.markerObjs.push({ marker, info: [item.aptInfo] });
+        //info = [item.aptInfo];
+        // kakao.maps.event.addListener(
+        //   marker,
+        //   "click",
+        //   makeClickListener(this.map, marker, info),
+        // );
+      }
+
+      if (this.count == 0) {
+        this.count += 1;
+        this.map.setCenter(coords);
+        this.map.setLevel(6);
+      }
     },
   },
 };
