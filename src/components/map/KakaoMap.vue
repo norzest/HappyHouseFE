@@ -81,9 +81,9 @@ export default {
       if (obj) {
         marker = obj.marker;
         //info = obj.info;
-        //kakao.maps.event.removeListener(marker, "click", makeClickListener);
+        //window.kakao.maps.event.removeListener(marker, "click", makeClickListener);
         obj.info.push(item.aptInfo);
-        //kakao.maps.event.addListener(marker, "click", makeClickListener(map, marker, info));
+        //window.kakao.maps.event.addListener(marker, "click", makeClickListener(map, marker, info));
       } else {
         marker = new window.kakao.maps.Marker({
           map: this.map,
@@ -94,7 +94,7 @@ export default {
         });
         this.markerObjs.push({ marker, info: [item.aptInfo] });
         //info = [item.aptInfo];
-        // kakao.maps.event.addListener(
+        // window.kakao.maps.event.addListener(
         //   marker,
         //   "click",
         //   makeClickListener(this.map, marker, info),
