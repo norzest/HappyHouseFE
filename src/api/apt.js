@@ -9,6 +9,7 @@ function aptList(params, success, fail) {
         dongCode: params.dongCode,
         year: params.year,
         month: params.month,
+        apartmentName: params.apartmentName,
       },
     })
     .then(success)

@@ -18,11 +18,12 @@ const aptStore = {
   },
 
   actions: {
-    getAptList: ({ commit }, dongCode) => {
+    getAptList: ({ commit }, dym) => {
       const params = {
-        dongCode: dongCode,
-        year: "2021", // 나중에 추가
-        month: "07", // 나중에 추가
+        dongCode: dym.dongCode,
+        year: dym.year,
+        month: dym.month,
+        apartmentName: dym.apartmentName,
       };
       aptList(
         params,

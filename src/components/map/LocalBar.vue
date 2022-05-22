@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div id="searchBar">
+      <input type="text" v-model="apartmentName" />
+      <button @click="searchApt">검색</button>
+    </div>
     <div class="row">
       <div class="col">
         <select class="form-select" v-model="sidoCode" @change="gugunList">
@@ -26,6 +30,20 @@
           </option>
         </select>
       </div>
+      <div class="col">
+        <select class="form-select" v-model="year">
+          <option v-for="y in yearOption" :key="y.value" :value="y.value">
+            {{ y.text }}
+          </option>
+        </select>
+      </div>
+      <div class="col">
+        <select class="form-select" v-model="month">
+          <option v-for="m in monthOption" :key="m.value" :value="m.value">
+            {{ m.text }}
+          </option>
+        </select>
+      </div>
     </div>
     <div>
       <button @click="searchApt">조회하기</button>
@@ -45,6 +63,33 @@ export default {
     return {
       year: null,
       month: null,
+      yearOption: [
+        { text: "년도", value: null },
+        { text: "2015년", value: 2015 },
+        { text: "2016년", value: 2016 },
+        { text: "2017년", value: 2017 },
+        { text: "2018년", value: 2018 },
+        { text: "2019년", value: 2019 },
+        { text: "2020년", value: 2020 },
+        { text: "2021년", value: 2021 },
+        { text: "2022년", value: 2022 },
+      ],
+      monthOption: [
+        { text: "월", value: null },
+        { text: "1월", value: 1 },
+        { text: "2월", value: 2 },
+        { text: "3월", value: 3 },
+        { text: "4월", value: 4 },
+        { text: "5월", value: 5 },
+        { text: "6월", value: 6 },
+        { text: "7월", value: 7 },
+        { text: "8월", value: 8 },
+        { text: "9월", value: 9 },
+        { text: "10월", value: 10 },
+        { text: "11월", value: 11 },
+        { text: "12월", value: 12 },
+      ],
+      apartmentName: null,
       sidoCode: null,
       gugunCode: null,
       dongCode: null,
@@ -83,7 +128,13 @@ export default {
       if (this.gugunCode) this.getDong(this.gugunCode.substring(0, 5));
     },
     searchApt() {
-      if (this.dongCode) this.getAptList(this.dongCode);
+      const dym = {
+        dongCode: this.dongCode,
+        year: this.year,
+        month: this.month,
+        apartmentName: this.apartmentName,
+      };
+      this.getAptList(dym);
     },
   },
 };
