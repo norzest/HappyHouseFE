@@ -34,7 +34,6 @@ async function memberModify(member, success, fail) {
 }
 
 async function memberDelete(id, password, success, fail) {
-  console.log(id, password);
   await api
     .delete(`/member/delete`, {
       params: {

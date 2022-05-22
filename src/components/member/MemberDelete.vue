@@ -46,7 +46,6 @@ export default {
       const id = this.$store.getters["memberStore/checkUserInfo"].id;
       const pwd = this.$store.getters["memberStore/checkUserInfo"].password;
       if (this.password === pwd) {
-        console.log(pwd);
         if (confirm("정말 탈퇴하시겠습니까?")) {
           this.userDelete({
             id: id,

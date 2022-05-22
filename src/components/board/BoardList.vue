@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <table>
+  <div class="table">
+    <table class="boardtable">
+      <colgroup>
+        <col style="width: 10%" />
+        <col style="width: 40%" />
+        <col style="width: 20%" />
+        <col style="width: 20%" />
+        <col style="width: 10%" />
+      </colgroup>
       <thead>
         <tr>
           <th>글번호</th>
@@ -18,7 +25,6 @@
         ></board-list-item>
       </tbody>
     </table>
-    <button @click="mvWrite()">글작성</button>
   </div>
 </template>
 
@@ -63,4 +69,38 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.boardtable {
+  width: 80%;
+}
+
+.boardtable a {
+}
+
+.boardtable thead {
+  background-color: #e9e8e6;
+}
+.boardtable thead tr,
+.boardtable tbody tr {
+}
+
+.boardtable thead,
+.boardtable tbody {
+  text-align: center;
+}
+.boardtable tr td,
+.boardtable tr th {
+  padding: 10px;
+}
+
+.boardtable tbody tr:nth-child(2n) {
+  background-color: #f3f2f0;
+}
+</style>

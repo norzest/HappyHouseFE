@@ -51,7 +51,7 @@ export default {
     ...mapActions(memberStore, ["userLogout"]),
     logoutMethod() {
       this.userLogout();
-      this.$router.push("/");
+      this.$router.push({ name: "home" });
     },
     tagOnOff() {
       this.tag = !this.tag;

@@ -65,11 +65,16 @@ const routes = [
     path: "/board",
     name: "board",
     component: () => import("@/views/BoardView.vue"),
-    redirect: "/board/list",
+    redirect: "/board/notice",
     children: [
       {
+        path: "notice",
+        name: "notice",
+        component: () => import("@/components/notice/NoticeList.vue"),
+      },
+      {
         path: "list",
-        name: "boardList",
+        name: "list",
         component: () => import("@/components/board/BoardList.vue"),
       },
       {

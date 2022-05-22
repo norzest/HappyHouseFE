@@ -74,7 +74,6 @@ const memberStore = {
         user.id,
         user.password,
         (response) => {
-          console.log(response);
           if (response.data.message === "success") {
             let token = response.data["access-token"];
             commit("SET_USER_INFO", null);

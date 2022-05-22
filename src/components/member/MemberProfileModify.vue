@@ -130,7 +130,6 @@ export default {
       else this.modifyMethod();
     },
     modifyMethod() {
-      console.log(this.member);
       this.userModify({
         id: this.member.id,
         password: this.member.password,
