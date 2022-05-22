@@ -4,7 +4,10 @@ const aptStore = {
   namespaced: true,
   state: {
     apts: [],
-    apt: null,
+    apt: {
+      apartmentName: null,
+      juso: null,
+    },
   },
 
   getters: {},
