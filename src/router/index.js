@@ -113,6 +113,11 @@ const routes = [
     component: () => import("@/views/MapView.vue"),
   },
   {
+    path: "/interestedloc",
+    name: "interestedloc",
+    component: () => import("@/views/InterestedLocView.vue"),
+  },
+  {
     path: "/about",
     name: "about",
     component: () => import("@/views/AboutView.vue"),
