@@ -1,11 +1,13 @@
 <template>
   <div class="aptInfo" @click="aptDetail">
-    <div class="imsi_img"></div>
-    <div class="imsi_interested">관심지역 아니면 이 글자 뜸</div>
-    <div>
-      <p>{{ apartmentName }}</p>
-      <p>{{ juso }}</p>
-      <p>{{ min }}만원 ~ {{ max }}만원</p>
+    <div class="pickimg"></div>
+    <div class="interested">
+      <img src="../../../assets/img/star_no.png" alt="" />
+    </div>
+    <div class="apttext">
+      <p class="title">{{ apartmentName }}</p>
+      <p class="juso">{{ juso }}</p>
+      <p class="money">{{ min | eok }}억 ~ {{ max | eok }}억</p>
     </div>
   </div>
 </template>
@@ -34,7 +36,61 @@ export default {
       this.detailApt(aptDt);
     },
   },
+  filters: {
+    eok(val) {
+      return (
+        val.substring(0, val.length - 5) +
+        "." +
+        val.substring(val.length - 5, val.length - 4)
+      );
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.aptInfo {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  position: relative;
+  align-items: center;
+}
+.pickimg {
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+.interested {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  z-index: 3;
+}
+.interested img {
+  width: 25px;
+  height: 25px;
+}
+.apttext {
+  width: 240px;
+  padding: 30px 0 5px;
+}
+.apttext .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.juso {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 5px;
+  padding-left: 10px;
+}
+.money {
+  font-size: 14px;
+  color: gray;
+  padding-left: 10px;
+}
+</style>

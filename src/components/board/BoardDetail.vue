@@ -6,7 +6,7 @@
         <span class="writerid">
           {{ article.writerId }}
         </span>
-        <span class="createdat">{{ article.createdAt | time }}</span>
+        <span class="createdat">{{ article.createdAt }}</span>
       </div>
       <div v-if="userInfo.id == article.writerId">
         <button @click="mvModifyArticle">수정</button>
@@ -34,9 +34,8 @@ export default {
     };
   },
   created() {
-    const id = this.$route.params.id;
     boardDetail(
-      id,
+      this.$route.params.id,
       (data) => {
         this.article = data.data.article;
       },
@@ -66,11 +65,11 @@ export default {
       this.$router.push({ name: "boardList" });
     },
   },
-  filters: {
-    time(val) {
-      return val.substr(0, 16);
-    },
-  },
+  // filters: {
+  //   time(val) {
+  //     return val.substr(0, 16);
+  //   },
+  // },
 };
 </script>
 
