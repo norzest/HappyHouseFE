@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { deleteInterestedAptList } from "@/api/apt.js";
 import { mapState } from "vuex";
+import { deleteInterestedAptList } from "@/api/apt.js";
 
 const memberStore = "memberStore";
 
@@ -19,7 +19,7 @@ export default {
     roadName: String,
     jibun: String,
     aptName: String,
-    aptCode: String,
+    aptCode: Number,
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
@@ -32,9 +32,8 @@ export default {
       };
       deleteInterestedAptList(
         params,
-        (response) => {
-          console.log(response);
-          alert("관심지역을 삭제하였습니다");
+        () => {
+          this.getFollowAptList(params);
         },
         (error) => {
           console.log(error);

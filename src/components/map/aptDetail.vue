@@ -11,7 +11,18 @@
           <div class="juso">{{ apt.juso }}</div>
         </div>
         <div class="interested">
-          <img src="../../assets/img/star_no.png" alt="" />
+          <img
+            v-show="isFollow"
+            src="@/assets/img/star_yes.png"
+            alt=""
+            @click="setInterestedLoc('d')"
+          />
+          <img
+            v-show="!isFollow"
+            src="@/assets/img/star_no.png"
+            alt=""
+            @click="setInterestedLoc('r')"
+          />
         </div>
       </div>
     </div>
@@ -47,8 +58,10 @@
 </template>
 
 <script>
+import { deleteInterestedAptList, registInterestedAptList } from "@/api/apt.js";
 import aptDetailItem from "@/components/map/item/aptDetailItem.vue";
 import { mapState, mapActions } from "vuex";
+const memberStore = "memberStore";
 const aptStore = "aptStore";
 
 export default {
@@ -59,18 +72,26 @@ export default {
   data() {
     return {
       aptDetail: [],
+      isFollow: false,
     };
   },
   computed: {
-    ...mapState(aptStore, ["apt", "apts"]),
+    ...mapState(memberStore, ["userInfo"]),
+    ...mapState(aptStore, ["apt", "apts", "followapts"]),
+  },
+  created() {
+    this.setImg();
   },
   watch: {
     apt() {
       this.makeAptDetail();
     },
+    followapts() {
+      this.setImg();
+    },
   },
   methods: {
-    ...mapActions(aptStore, ["detailApt"]),
+    ...mapActions(aptStore, ["detailApt", "getFollowAptList"]),
     aptList() {
       const a = {
         apartmentName: null,
@@ -86,7 +107,45 @@ export default {
             this.aptDetail.push(item);
           }
         }
-        console.log(this.aptDetail);
+      }
+    },
+    setInterestedLoc(type) {
+      var params = {
+        aptCode: this.apt.aptCode,
+        memberId: this.userInfo.id,
+      };
+      if (type == "d") {
+        deleteInterestedAptList(
+          params,
+          () => {
+            this.getFollowAptList(params);
+          },
+          (error) => {
+            console.log(error);
+          },
+        );
+        this.isFollow = false;
+      } else if (type == "r") {
+        registInterestedAptList(
+          params,
+          () => {
+            this.getFollowAptList(params);
+          },
+          (error) => {
+            console.log(error);
+          },
+        );
+        this.isFollow = true;
+      }
+    },
+    setImg() {
+      for (let apt of this.followapts) {
+        if (apt.aptCode == this.apt.aptCode) {
+          this.isFollow = true;
+          break;
+        } else {
+          this.isFollow = false;
+        }
       }
     },
   },

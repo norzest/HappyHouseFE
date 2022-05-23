@@ -18,35 +18,25 @@ function aptList(params, success, fail) {
 
 function interestedAptList(params, success, fail) {
   api
-    .get(`/apt/followApt`, {
-      params: {
-        memberId: params.memberId,
-      },
-    })
+    .get(`/apt/followApt?memberId=${params.memberId}`)
     .then(success)
     .catch(fail);
 }
 
 function registInterestedAptList(params, success, fail) {
   api
-    .post(`/apt/followApt`, {
-      params: {
-        aptCode: params.aptCode,
-        memberId: params.memberId,
-      },
-    })
+    .post(
+      `/apt/followApt?memberId=${params.memberId}&aptCode=${params.aptCode}`,
+    )
     .then(success)
     .catch(fail);
 }
 
 function deleteInterestedAptList(params, success, fail) {
   api
-    .delete(`/apt/followApt`, {
-      params: {
-        aptCode: params.aptCode,
-        memberId: params.memberId,
-      },
-    })
+    .delete(
+      `/apt/followApt?memberId=${params.memberId}&aptCode=${params.aptCode}`,
+    )
     .then(success)
     .catch(fail);
 }

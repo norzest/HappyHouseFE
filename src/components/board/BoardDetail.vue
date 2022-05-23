@@ -58,7 +58,7 @@ export default {
           },
           () => {},
         );
-        this.$router.push({ name: "boardList" });
+        this.$router.go(this.$router.push({ name: "boardList" }));
       }
     },
     mvBoardList() {

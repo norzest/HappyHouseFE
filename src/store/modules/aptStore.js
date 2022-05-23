@@ -1,4 +1,4 @@
-import { aptList } from "@/api/apt.js";
+import { aptList, interestedAptList } from "@/api/apt.js";
 
 const aptStore = {
   namespaced: true,
@@ -7,7 +7,9 @@ const aptStore = {
     apt: {
       apartmentName: null,
       juso: null,
+      aptCode: null,
     },
+    followapts: [],
   },
 
   getters: {},
@@ -17,6 +19,9 @@ const aptStore = {
     },
     SET_DETAIL_APT: (state, apt) => {
       state.apt = apt;
+    },
+    SET_FOLLOW_APT_LIST: (state, apts) => {
+      state.followapts = apts;
     },
   },
 
@@ -40,8 +45,18 @@ const aptStore = {
       );
     },
     detailApt: ({ commit }, apt) => {
-      // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_APT", apt);
+    },
+    getFollowAptList: ({ commit }, params) => {
+      interestedAptList(
+        params,
+        (response) => {
+          commit("SET_FOLLOW_APT_LIST", response.data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
     },
   },
 };
