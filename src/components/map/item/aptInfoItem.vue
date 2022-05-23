@@ -40,11 +40,13 @@ export default {
   },
   filters: {
     eok(val) {
-      return (
-        val.substring(0, val.length - 5) +
-        "." +
-        val.substring(val.length - 5, val.length - 4)
-      );
+      if (val.length > 5)
+        return (
+          val.substring(0, val.length - 5) +
+          "." +
+          val.substring(val.length - 5, val.length - 4)
+        );
+      else return "0." + val.substring(val.length - 5, val.length - 4);
     },
   },
 };

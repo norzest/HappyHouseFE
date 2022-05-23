@@ -178,8 +178,6 @@ export default {
 </script>
 
 <style scoped>
-.first {
-}
 #searchBar {
   width: 320px;
   text-align: center;
@@ -237,9 +235,9 @@ export default {
   height: 30px;
   border-radius: 5px;
   margin-left: 15px;
+  cursor: pointer;
 }
-.row {
-}
+
 .area {
   display: flex;
 }
