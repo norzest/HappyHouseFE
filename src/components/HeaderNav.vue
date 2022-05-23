@@ -20,8 +20,8 @@
       </div>
     </div>
     <div v-else id="guest">
-      <router-link :to="{ name: 'login' }">login</router-link>
-      <router-link to="/member/join">join</router-link>
+      <router-link :to="{ name: 'login' }">Login</router-link>
+      <router-link to="/member/join">Join</router-link>
     </div>
   </header>
 </template>
@@ -72,6 +72,7 @@ header {
   font-size: 18px;
   position: fixed;
   top: 0;
+  z-index: 10;
 }
 
 header a {
