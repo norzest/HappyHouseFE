@@ -15,7 +15,7 @@
           >자유게시판</router-link
         >
       </div>
-      <div class="register">
+      <div v-if="btnCh" class="register">
         <button @click="registerBoard">글쓰기</button>
       </div>
     </div>
@@ -24,13 +24,11 @@
 </template>
 
 <script>
-// import mapState from "vuex";
-// const memberStore = "memberStore";
 export default {
   data() {
     return {
       notice: true,
-      //   ...mapState(memberStore, ["userInfo"]),
+      registerbtn: true,
     };
   },
   computed: {
@@ -40,11 +38,25 @@ export default {
     listCh() {
       return !this.notice;
     },
+    btnCh() {
+      const info = this.$store.getters["memberStore/checkUserInfo"];
+      if (
+        this.$route.path.indexOf("list") > 0 ||
+        this.$route.path.indexOf("detail") > 0
+      ) {
+        if (this.$route.path.indexOf("notice") > 0) {
+          if (info.id === "admin") {
+            return true;
+          } else return false;
+        } else return true;
+      } else return false;
+    },
   },
   created() {
     if (this.$route.path.indexOf("notice") > 0) {
       this.notice = true;
     } else this.notice = false;
+    this.listCheck();
   },
   methods: {
     clickBoard() {
@@ -56,6 +68,16 @@ export default {
       this.notice
         ? this.$router.push({ name: "noticeRegister" })
         : this.$router.push({ name: "boardRegister" });
+    },
+    listCheck() {
+      const info = this.$store.getters["memberStore/checkUserInfo"];
+      if (this.$route.name === "list") {
+        if (this.$route.path.indexOf("notice") > 0) {
+          if (info.id === "admin") {
+            this.registerbtn = true;
+          } else this.registerbtn = false;
+        } else this.registerbtn = true;
+      } else this.registerbtn = false;
     },
   },
 };

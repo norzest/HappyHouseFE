@@ -8,7 +8,7 @@
     <div id="navbar">
       <router-link to="/map">아파트</router-link>
       <router-link to="/about">관심매물</router-link>
-      <router-link to="/board">게시판</router-link>
+      <router-link to="/notice">게시판</router-link>
     </div>
     <div v-if="userInfo" id="member">
       <div class="profile" @click="tagOnOff">{{ userInfoName }}</div>
