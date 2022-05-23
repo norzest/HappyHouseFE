@@ -24,4 +24,26 @@ function boardDetail(id, success, fail) {
   api.get(`/board/detail?id=${id}`).then(success).catch(fail);
 }
 
-export { listArticle, hitCounter, boardDetail };
+function boardRegister(article, success, fail) {
+  api.post(`board/write`, JSON.stringify(article)).then(success).catch(fail);
+}
+
+function boardModify(article, success, fail) {
+  api
+    .put(`/board/detail/${article.id}`, JSON.stringify(article))
+    .then(success)
+    .catch(fail);
+}
+
+function boardDelete(id, success, fail) {
+  api.delete(`/board/detail/${id}`).then(success).catch(fail);
+}
+
+export {
+  listArticle,
+  hitCounter,
+  boardDetail,
+  boardRegister,
+  boardModify,
+  boardDelete,
+};

@@ -1,48 +1,94 @@
 <template>
-  <div>
-    <label for="id">글번호</label>
-    <div>{{ article.id }}</div>
-    <label for="title">제목</label>
-    <div>{{ article.title }}</div>
-    <label for="writerId">작성자</label>
-    <div>{{ article.writerId }}</div>
-    <label for="createdAt">작성일</label>
-    <div>{{ article.createdAt }}</div>
-    <label for="hit">조회수</label>
-    <div>{{ article.hit }}</div>
-    <label for="content">내용</label>
-    <div v-html="article.content"></div>
-
-    <button v-if="this.type === 'modify'" @click="modifyArticle">글수정</button>
-    <button v-else @click="registerArticle">글작성</button>
-    <button @click="mvBoardList()">목록</button>
+  <div class="inputform">
+    <input
+      type="text"
+      id="title"
+      name="title"
+      v-model="article.title"
+      placeholder="제목"
+    />
+    <div class="line"></div>
+    <textarea
+      name="content"
+      id="contnet"
+      cols="30"
+      rows="15"
+      v-model="article.content"
+      placeholder="내용"
+    ></textarea>
+    <div class="btnset">
+      <button v-if="this.type === 'modify'" @click="modifyArticle">
+        글수정
+      </button>
+      <button v-else @click="registerArticle">글작성</button>
+      <button @click="mvBoardList()">목록</button>
+    </div>
   </div>
 </template>
 
 <script>
+import { boardRegister, boardDetail, boardModify } from "@/api/board.js";
 export default {
   name: "BoardInputItem",
   data() {
     return {
       article: {
-        id: 1,
-        title: "test",
+        id: "",
+        title: "",
         writerId: "test",
-        createdAt: "test",
-        hit: 1,
-        content: "test",
+        content: "",
+        boardType: "free",
       },
     };
   },
   props: {
     type: { type: String },
   },
+  created() {
+    this.article.writerId = this.$store.getters["memberStore/checkUserInfo"].id;
+    this.article.id = this.$route.params.id;
+    if (this.type === "modify") {
+      boardDetail(
+        this.$route.params.id,
+        (data) => {
+          this.article.title = data.data.article.title;
+          this.article.content = data.data.article.content;
+        },
+        () => {},
+      );
+    }
+  },
   methods: {
     modifyArticle() {
-      alert("연결 테스트");
+      boardModify(
+        {
+          id: this.article.id,
+          title: this.article.title,
+          content: this.article.content,
+        },
+        () => {},
+        () => {},
+      );
+
+      this.$router.go(
+        this.$router.push({
+          name: "boardDetail",
+          params: { id: this.article.id },
+        }),
+      );
     },
     registerArticle() {
-      alert("연결 테스트");
+      boardRegister(
+        {
+          title: this.article.title,
+          writerId: this.article.writerId,
+          content: this.article.content,
+          boardType: this.article.boardType,
+        },
+        () => {},
+        () => {},
+      );
+      this.$router.go(this.$router.push({ name: "boardList" }));
     },
     mvBoardList() {
       this.$router.push({ name: "boardList" });
@@ -51,4 +97,44 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.inputform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 50px;
+}
+.inputform input {
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+}
+.inputform input:focus {
+  outline: none;
+}
+.line {
+  width: 100%;
+  position: relative;
+  background-color: lightgray;
+  height: 1px;
+  margin: 30px 0;
+}
+.inputform textarea {
+  border: none;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+.inputform textarea:focus {
+  outline: none;
+}
+.btnset {
+  display: flex;
+  justify-content: flex-end;
+}
+.btnset button {
+  border: 1px solid gray;
+  padding: 2px 5px;
+  background-color: #fff;
+  margin: 20px 5px;
+}
+</style>
