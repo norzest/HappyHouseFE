@@ -4,7 +4,7 @@ const api = apiInstance();
 
 function aptList(params, success, fail) {
   api
-    .get(`/getApt/dongApt`, {
+    .get(`/apt/dongApt`, {
       params: {
         dongCode: params.dongCode,
         year: params.year,
@@ -16,4 +16,44 @@ function aptList(params, success, fail) {
     .catch(fail);
 }
 
-export { aptList };
+function interestedAptList(params, success, fail) {
+  api
+    .get(`/apt/followApt`, {
+      params: {
+        memberId: params.memberId,
+      },
+    })
+    .then(success)
+    .catch(fail);
+}
+
+function registInterestedAptList(params, success, fail) {
+  api
+    .post(`/apt/followApt`, {
+      params: {
+        aptCode: params.aptCode,
+        memberId: params.memberId,
+      },
+    })
+    .then(success)
+    .catch(fail);
+}
+
+function deleteInterestedAptList(params, success, fail) {
+  api
+    .delete(`/apt/followApt`, {
+      params: {
+        aptCode: params.aptCode,
+        memberId: params.memberId,
+      },
+    })
+    .then(success)
+    .catch(fail);
+}
+
+export {
+  aptList,
+  interestedAptList,
+  registInterestedAptList,
+  deleteInterestedAptList,
+};

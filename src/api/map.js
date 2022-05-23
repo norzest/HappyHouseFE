@@ -4,7 +4,7 @@ const api = mapInstance();
 
 function callByDongCode(dongCode, year, month, success, fail) {
   api
-    .get(`/getApt/dongApt`, {
+    .get(`/apt/dongApt`, {
       params: {
         dongCode: dongCode,
         year: year,

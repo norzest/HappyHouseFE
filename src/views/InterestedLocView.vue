@@ -1,9 +1,19 @@
 <template>
-  <div>관심지역</div>
+  <div>
+    <div>관심 매물</div>
+    <interested-loc-list></interested-loc-list>
+  </div>
 </template>
 
 <script>
-export default {};
+import interestedLocList from "@/components/interestedloc/interestedLocList.vue";
+
+export default {
+  name: "InterestedLocView",
+  components: {
+    interestedLocList,
+  },
+};
 </script>
 
 <style></style>
