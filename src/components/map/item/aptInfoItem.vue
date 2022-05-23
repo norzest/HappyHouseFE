@@ -1,7 +1,7 @@
 <template>
   <div class="aptInfo" @click="aptDetail">
     <div class="imsi_img"></div>
-    <div class="imsi_interested"></div>
+    <div class="imsi_interested">관심지역 아니면 이 글자 뜸</div>
     <div>
       <p>{{ apartmentName }}</p>
       <p>{{ juso }}</p>

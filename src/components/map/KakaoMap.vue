@@ -4,7 +4,7 @@
 
 <script>
 import { KAKAO_MAP_URL } from "@/config";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const aptStore = "aptStore";
 
@@ -18,7 +18,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(aptStore, ["apts"]),
+    ...mapState(aptStore, ["apt", "apts"]),
   },
   watch: {
     apts() {
@@ -39,6 +39,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(aptStore, ["detailApt"]),
     initMap() {
       const container = document.getElementById("map");
       this.count = 0;
@@ -73,32 +74,27 @@ export default {
       );
 
       var coords = new window.kakao.maps.LatLng(item.lat, item.lng);
-      const obj = this.markerObjs.find(
-        (el) => el.marker.getTitle() == item.apt,
-      );
-      //let info;
+      const obj = this.markerObjs.find((el) => el.aptCode === item.aptCode);
       let marker;
-      if (obj) {
-        marker = obj.marker;
-        //info = obj.info;
-        //window.kakao.maps.event.removeListener(marker, "click", makeClickListener);
-        obj.info.push(item.aptInfo);
-        //window.kakao.maps.event.addListener(marker, "click", makeClickListener(map, marker, info));
-      } else {
+      if (!obj) {
         marker = new window.kakao.maps.Marker({
           map: this.map,
           position: coords,
           clickable: true,
-          title: item.apt,
+          title: item.aptName,
           image: markerImage,
         });
-        this.markerObjs.push({ marker, info: [item.aptInfo] });
-        //info = [item.aptInfo];
-        // window.kakao.maps.event.addListener(
-        //   marker,
-        //   "click",
-        //   makeClickListener(this.map, marker, info),
-        // );
+        this.markerObjs.push({ marker, aptCode: item.aptCode });
+
+        window.kakao.maps.event.addListener(marker, "click", () => {
+          var aptDt = {
+            apartmentName: item.aptName,
+            juso: item.dong + " " + item.roadName + " " + item.jibun,
+          };
+          this.detailApt(aptDt);
+          this.map.setLevel(5);
+          this.map.panTo(marker.getPosition());
+        });
       }
 
       if (this.count == 0) {
