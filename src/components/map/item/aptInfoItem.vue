@@ -67,6 +67,7 @@ export default {
   position: absolute;
   top: 10px;
   right: 0;
+  z-index: 3;
 }
 .interested img {
   width: 25px;

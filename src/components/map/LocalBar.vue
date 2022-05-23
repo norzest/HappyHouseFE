@@ -6,7 +6,7 @@
     </div>
     <div class="checkbar">
       <div class="toggle" @click="toggleClick" :class="{ off: trigger }"></div>
-      <div class="bar" v-show="trigger">
+      <div class="bar" :class="{ barkk: trigger }">
         <div class="row">
           <div class="area">
             <div class="col">
@@ -209,6 +209,7 @@ export default {
   border-radius: 25px;
   margin: 25px;
   cursor: pointer;
+  transition: 1s;
 }
 
 .bar {
@@ -220,18 +221,21 @@ export default {
   top: 25px;
   left: -10px;
   border-radius: 10px;
+  transition: 1s;
+  opacity: 0;
 }
 .row {
 }
 .area {
-  background-color: green;
   display: flex;
 }
 .other {
   display: flex;
 }
 .off {
-  /* translate: 180deg; */
-  background-color: #fff;
+  transform: rotate(180deg);
+}
+.barkk {
+  opacity: 1;
 }
 </style>
