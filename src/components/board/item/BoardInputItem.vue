@@ -69,10 +69,13 @@ export default {
         () => {},
         () => {},
       );
-      this.$router.push({
-        name: "boardDetail",
-        params: { id: this.article.id },
-      });
+
+      this.$router.go(
+        this.$router.push({
+          name: "boardDetail",
+          params: { id: this.article.id },
+        }),
+      );
     },
     registerArticle() {
       boardRegister(
@@ -85,7 +88,7 @@ export default {
         () => {},
         () => {},
       );
-      this.$router.push({ name: "boardList" });
+      this.$router.go(this.$router.push({ name: "boardList" }));
     },
     mvBoardList() {
       this.$router.push({ name: "boardList" });
