@@ -65,16 +65,11 @@ const routes = [
     path: "/board",
     name: "board",
     component: () => import("@/views/BoardView.vue"),
-    redirect: "/board/notice",
+    redirect: "/board/list",
     children: [
       {
-        path: "notice",
-        name: "notice",
-        component: () => import("@/components/notice/NoticeList.vue"),
-      },
-      {
         path: "list",
-        name: "list",
+        name: "boardList",
         component: () => import("@/components/board/BoardList.vue"),
       },
       {
@@ -91,6 +86,24 @@ const routes = [
         path: "regist",
         name: "boardRegister",
         component: () => import("@/components/board/BoardRegister.vue"),
+      },
+    ],
+  },
+  {
+    path: "/notice",
+    name: "notice",
+    redirect: "/notice/list",
+    component: () => import("@/views/BoardView.vue"),
+    children: [
+      {
+        path: "list",
+        name: "noticeList",
+        component: () => import("@/components/notice/NoticeList.vue"),
+      },
+      {
+        path: "detail/:id",
+        name: "NoticeDetail",
+        component: () => import("@/components/notice/NoticeDetail.vue"),
       },
     ],
   },

@@ -20,4 +20,8 @@ function hitCounter(id, success, fail) {
   api.post(`/board/hit?id=${id}`).then(success).catch(fail);
 }
 
-export { listArticle, hitCounter };
+function boardDetail(id, success, fail) {
+  api.get(`/board/detail?id=${id}`).then(success).catch(fail);
+}
+
+export { listArticle, hitCounter, boardDetail };

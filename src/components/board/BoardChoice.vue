@@ -5,13 +5,13 @@
         <router-link
           :to="{ name: 'notice' }"
           :class="{ checked: noticeCh }"
-          @click.native="clickNotice"
+          @click.native="clickBoard"
           >공지사항</router-link
         >
         <router-link
-          :to="{ name: 'list' }"
+          :to="{ name: 'boardList' }"
           :class="{ checked: listCh }"
-          @click.native="clickList"
+          @click.native="clickBoard"
           >자유게시판</router-link
         >
       </div>
@@ -30,7 +30,6 @@ export default {
   data() {
     return {
       notice: true,
-      list: false,
       //   ...mapState(memberStore, ["userInfo"]),
     };
   },
@@ -39,17 +38,19 @@ export default {
       return this.notice;
     },
     listCh() {
-      return this.list;
+      return !this.notice;
     },
   },
-  methods: {
-    clickNotice() {
+  created() {
+    if (this.$route.path.indexOf("notice") > 0) {
       this.notice = true;
-      this.list = false;
-    },
-    clickList() {
-      this.notice = false;
-      this.list = true;
+    } else this.notice = false;
+  },
+  methods: {
+    clickBoard() {
+      if (this.$route.path.indexOf("notice") > 0) {
+        this.notice = true;
+      } else this.notice = false;
     },
     registerBoard() {
       this.notice
@@ -93,5 +94,6 @@ export default {
   border-bottom: 3px solid white;
   border-radius: 10px 10px 0 0;
   z-index: 10;
+  font-weight: bold;
 }
 </style>

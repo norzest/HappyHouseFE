@@ -81,23 +81,16 @@ export default {
   width: 80%;
 }
 
-.boardtable a {
-}
-
 .boardtable thead {
   background-color: #e9e8e6;
 }
-.boardtable thead tr,
-.boardtable tbody tr {
-}
-
 .boardtable thead,
 .boardtable tbody {
   text-align: center;
 }
 .boardtable tr td,
 .boardtable tr th {
-  padding: 10px;
+  padding: 13px 10px;
 }
 
 .boardtable tbody tr:nth-child(2n) {

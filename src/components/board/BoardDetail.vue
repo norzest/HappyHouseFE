@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail">
     <label for="id">글번호</label>
     <div>{{ article.id }}</div>
     <label for="title">제목</label>
@@ -13,29 +13,36 @@
     <label for="content">내용</label>
     <div v-html="article.content"></div>
 
-    <button @click="mvModifyArticle">글수정</button>
-    <button @click="deleteArticle">글삭제</button>
+    <div v-if="userInfo.id == article.writerId">
+      <button @click="mvModifyArticle">글수정</button>
+      <button @click="deleteArticle">글삭제</button>
+    </div>
     <button @click="mvBoardList()">목록</button>
   </div>
 </template>
 
 <script>
+import { boardDetail } from "@/api/board";
+import { mapState } from "vuex";
+const memberStore = "memberStore";
 export default {
-  name: "BoardDetail",
   data() {
     return {
       article: {},
     };
   },
   created() {
-    this.article = {
-      id: "test",
-      title: "test",
-      writerId: "test",
-      createAt: "test",
-      hit: 1,
-      content: "test",
-    };
+    const id = this.$route.params.id;
+    boardDetail(
+      id,
+      (data) => {
+        this.article = data.data.article;
+      },
+      () => {},
+    );
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
     mvModifyArticle() {
@@ -51,4 +58,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.detail {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+</style>

@@ -1,14 +1,7 @@
 <template>
-  <tr>
+  <tr class="up" @click="detailMethod">
     <td>{{ id }}</td>
-    <td>
-      <router-link
-        :to="{ name: 'boardDetail', params: { id: id } }"
-        @click.prevent.native="clickcount(id)"
-      >
-        {{ title }}</router-link
-      >
-    </td>
+    <td>{{ title }}</td>
     <td>{{ writerId }}</td>
     <td>{{ createdAt | date }}</td>
     <td>{{ hit }}</td>
@@ -27,12 +20,13 @@ export default {
     hit: Number,
   },
   methods: {
-    clickcount(id) {
+    detailMethod() {
       hitCounter(
-        id,
+        this.id,
         () => {},
         () => {},
       );
+      this.$router.push({ name: "boardDetail", params: { id: this.id } });
     },
   },
   filters: {
@@ -43,4 +37,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.up:hover {
+  background-color: #e4d6ba;
+  cursor: pointer;
+}
+</style>
