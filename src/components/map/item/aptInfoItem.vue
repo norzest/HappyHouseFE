@@ -1,13 +1,15 @@
 <template>
-  <div class="aptInfo" @click="aptDetail">
-    <div class="pickimg"></div>
+  <div class="aptInfo">
     <div class="interested">
       <img src="../../../assets/img/star_no.png" alt="" />
     </div>
-    <div class="apttext">
-      <p class="title">{{ apartmentName }}</p>
-      <p class="juso">{{ juso }}</p>
-      <p class="money">{{ min | eok }}억 ~ {{ max | eok }}억</p>
+    <div class="aptlist" @click="aptDetail">
+      <div class="pickimg"></div>
+      <div class="apttext">
+        <p class="title">{{ apartmentName }}</p>
+        <p class="juso">{{ juso }}</p>
+        <p class="money">{{ min | eok }}억 ~ {{ max | eok }}억</p>
+      </div>
     </div>
   </div>
 </template>
@@ -50,16 +52,14 @@ export default {
 
 <style scoped>
 .aptInfo {
-  display: flex;
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
   position: relative;
   align-items: center;
 }
 .pickimg {
   width: 60px;
   height: 60px;
-  background-color: red;
+  background-color: #e9e8e6;
+  border-radius: 30px;
   margin-right: 15px;
   flex-shrink: 0;
 }
@@ -92,5 +92,12 @@ export default {
   font-size: 14px;
   color: gray;
   padding-left: 10px;
+}
+.aptlist {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  position: relative;
+  align-items: center;
 }
 </style>

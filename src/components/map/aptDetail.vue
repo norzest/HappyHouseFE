@@ -1,27 +1,48 @@
 <template>
-  <div>
-    <div>{{ apt.apartmentName }}</div>
-    <div>{{ apt.juso }}</div>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>거래년도</th>
-            <th>가격</th>
-            <th>면적</th>
-            <th>층</th>
-          </tr>
-        </thead>
-        <tbody>
-          <apt-detail-item
-            v-for="(detail, index) in aptDetail"
-            :key="index"
-            v-bind="detail"
-          ></apt-detail-item>
-        </tbody>
-      </table>
+  <div class="detail">
+    <div class="exit"><button @click="aptList" class="back">〈</button></div>
+    <div class="main">
+      <div class="aptimg">
+        <img src="../../assets/img/apt.jpg" alt="" />
+      </div>
+      <div class="info">
+        <div>
+          <div class="title">{{ apt.apartmentName }}</div>
+          <div class="juso">{{ apt.juso }}</div>
+        </div>
+        <div class="interested">
+          <img src="../../assets/img/star_no.png" alt="" />
+        </div>
+      </div>
     </div>
-    <button @click="aptList">뒤로가기</button>
+    <div class="money">
+      <div>
+        <table>
+          <colgroup>
+            <col style="width: 30%" />
+            <col style="width: 30%" />
+            <col style="width: 30%" />
+            <col style="width: 10%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>거래년도</th>
+              <th>가격</th>
+              <th>면적<small>(㎡)</small></th>
+              <th>층</th>
+            </tr>
+          </thead>
+          <tbody>
+            <apt-detail-item
+              v-for="(detail, index) in aptDetail"
+              :key="index"
+              v-bind="detail"
+            ></apt-detail-item>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="comment"></div>
   </div>
 </template>
 
@@ -72,4 +93,77 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.exit {
+  padding-bottom: 5px;
+}
+.back {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.detail {
+  padding: 10px;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.aptimg {
+  margin: 10px auto;
+}
+.main img {
+  width: 280px;
+}
+.info {
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+}
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.juso {
+  color: gray;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+.interested img {
+  width: 25px;
+  height: 25px;
+}
+.money {
+  height: 200px;
+  overflow: auto;
+  margin: 15px 10px;
+}
+.money::-webkit-scrollbar {
+  width: 12px;
+}
+
+.money::-webkit-scrollbar-thumb {
+  background-color: #e1e1e1;
+  border-radius: 12px;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+}
+
+.money::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+.money table {
+  width: 100%;
+  text-align: center;
+}
+.money table thead {
+  background-color: #d5d2cc;
+}
+.money th {
+  padding: 10px;
+  font-size: 14px;
+}
+</style>

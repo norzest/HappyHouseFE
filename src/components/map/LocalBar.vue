@@ -73,7 +73,7 @@
           </div>
         </div>
         <div>
-          <button @click="searchApt">조회하기</button>
+          <button @click="searchApt" class="aptsearchbtn">조회하기</button>
         </div>
       </div>
     </div>
@@ -122,7 +122,7 @@ export default {
       sidoCode: null,
       gugunCode: null,
       dongCode: null,
-      tr: true,
+      tr: false,
     };
   },
   computed: {
@@ -223,6 +223,20 @@ export default {
   border-radius: 10px;
   transition: 1s;
   opacity: 0;
+  padding: 0 20px;
+}
+.bar select {
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.aptsearchbtn {
+  background-color: #996a54;
+  color: white;
+  border: none;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 15px;
 }
 .row {
 }

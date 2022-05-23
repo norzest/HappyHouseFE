@@ -40,7 +40,7 @@ export default {
     },
     btnCh() {
       const info = this.$store.getters["memberStore/checkUserInfo"];
-      console.log(info);
+
       if (
         this.$route.path.indexOf("list") > 0 ||
         this.$route.path.indexOf("detail") > 0
