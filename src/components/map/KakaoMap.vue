@@ -110,7 +110,7 @@ export default {
 <style scoped>
 #map {
   border: 0;
-  width: 100%;
-  height: 90vh;
+  width: calc(100% - 320px);
+  height: calc(100vh - 80px);
 }
 </style>

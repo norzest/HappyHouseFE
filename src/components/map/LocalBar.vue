@@ -1,52 +1,81 @@
 <template>
-  <div>
+  <div class="first">
     <div id="searchBar">
-      <input type="text" v-model="apartmentName" />
+      <input type="text" v-model="apartmentName" class="input" />
       <button @click="searchApt">검색</button>
     </div>
-    <div class="row">
-      <div class="col">
-        <select class="form-select" v-model="sidoCode" @change="gugunList">
-          <option v-for="sido in sidos" :key="sido.value" :value="sido.value">
-            {{ sido.text }}
-          </option>
-        </select>
+    <div class="checkbar">
+      <div class="toggle" @click="toggleClick" :class="{ off: trigger }"></div>
+      <div class="bar" v-show="trigger">
+        <div class="row">
+          <div class="area">
+            <div class="col">
+              <select
+                class="form-select"
+                v-model="sidoCode"
+                @change="gugunList"
+              >
+                <option
+                  v-for="sido in sidos"
+                  :key="sido.value"
+                  :value="sido.value"
+                >
+                  {{ sido.text }}
+                </option>
+              </select>
+            </div>
+            <div class="col">
+              <select
+                class="form-select"
+                v-model="gugunCode"
+                @change="dongList"
+              >
+                <option
+                  v-for="gugun in guguns"
+                  :key="gugun.value"
+                  :value="gugun.value"
+                >
+                  {{ gugun.text }}
+                </option>
+              </select>
+            </div>
+            <div class="col">
+              <select class="form-select" v-model="dongCode">
+                <option
+                  v-for="dong in dongs"
+                  :key="dong.value"
+                  :value="dong.value"
+                >
+                  {{ dong.text }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="other">
+            <div class="col">
+              <select class="form-select" v-model="year">
+                <option v-for="y in yearOption" :key="y.value" :value="y.value">
+                  {{ y.text }}
+                </option>
+              </select>
+            </div>
+            <div class="col">
+              <select class="form-select" v-model="month">
+                <option
+                  v-for="m in monthOption"
+                  :key="m.value"
+                  :value="m.value"
+                >
+                  {{ m.text }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button @click="searchApt">조회하기</button>
+        </div>
       </div>
-      <div class="col">
-        <select class="form-select" v-model="gugunCode" @change="dongList">
-          <option
-            v-for="gugun in guguns"
-            :key="gugun.value"
-            :value="gugun.value"
-          >
-            {{ gugun.text }}
-          </option>
-        </select>
-      </div>
-      <div class="col">
-        <select class="form-select" v-model="dongCode">
-          <option v-for="dong in dongs" :key="dong.value" :value="dong.value">
-            {{ dong.text }}
-          </option>
-        </select>
-      </div>
-      <div class="col">
-        <select class="form-select" v-model="year">
-          <option v-for="y in yearOption" :key="y.value" :value="y.value">
-            {{ y.text }}
-          </option>
-        </select>
-      </div>
-      <div class="col">
-        <select class="form-select" v-model="month">
-          <option v-for="m in monthOption" :key="m.value" :value="m.value">
-            {{ m.text }}
-          </option>
-        </select>
-      </div>
-    </div>
-    <div>
-      <button @click="searchApt">조회하기</button>
     </div>
   </div>
 </template>
@@ -93,11 +122,15 @@ export default {
       sidoCode: null,
       gugunCode: null,
       dongCode: null,
+      tr: true,
     };
   },
   computed: {
     ...mapState(localStore, ["sidos", "guguns", "dongs"]),
     ...mapState(aptStore, ["apts"]),
+    trigger() {
+      return this.tr;
+    },
   },
   created() {
     this.CLEAR_SIDO_LIST();
@@ -136,8 +169,69 @@ export default {
       };
       this.getAptList(dym);
     },
+    toggleClick() {
+      console.log("ggdg");
+      this.tr = !this.tr;
+    },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.first {
+}
+#searchBar {
+  width: 320px;
+  text-align: center;
+  padding: 20px 10px;
+  border-bottom: 1px solid #996a54;
+}
+#searchBar input {
+  height: 30px;
+  width: 70%;
+}
+#searchBar button {
+  display: inline-block;
+  margin-left: 10px;
+  height: 30px;
+}
+.checkbar {
+  position: fixed;
+  top: 70px;
+  left: 310px;
+  display: flex;
+}
+.toggle {
+  width: 50px;
+  height: 50px;
+  background: url("../../assets/img/open.png");
+  background-size: 100%;
+  border-radius: 25px;
+  margin: 25px;
+  cursor: pointer;
+}
+
+.bar {
+  background-color: #f3f2f0;
+  border: 2px solid #996a54;
+  display: flex;
+  position: relative;
+  align-items: center;
+  top: 25px;
+  left: -10px;
+  border-radius: 10px;
+}
+.row {
+}
+.area {
+  background-color: green;
+  display: flex;
+}
+.other {
+  display: flex;
+}
+.off {
+  /* translate: 180deg; */
+  background-color: #fff;
+}
+</style>
