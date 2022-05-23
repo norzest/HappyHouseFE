@@ -73,6 +73,7 @@ export default {
         this.$router.push({ name: "home" });
       } else {
         this.error = "잘못된 아이디 혹은 비밀번호입니다.";
+        this.user.pwd = "";
       }
     },
   },
