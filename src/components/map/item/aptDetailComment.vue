@@ -1,7 +1,13 @@
 <template>
   <div>
     <div class="inputbox">
-      <textarea name="comment" id="comment" cols="30" rows="4"></textarea>
+      <textarea
+        name="comment"
+        id="comment"
+        v-model="aptcomment"
+        cols="30"
+        rows="4"
+      ></textarea>
       <button @click="registComment">작성</button>
     </div>
     <div class="commentlist">
@@ -15,6 +21,7 @@
 </template>
 
 <script>
+import { registAptComment } from "@/api/aptcomment.js";
 import aptDetailCommentItem from "@/components/map/item/aptDetailCommentItem.vue";
 import { mapState, mapActions } from "vuex";
 
@@ -23,6 +30,11 @@ const aptCommentStore = "aptCommentStore";
 export default {
   components: { aptDetailCommentItem },
   name: "aptDetailComment",
+  data() {
+    return {
+      aptcomment: "",
+    };
+  },
   computed: {
     ...mapState(aptCommentStore, ["aptComment"]),
   },
@@ -36,7 +48,14 @@ export default {
   },
   methods: {
     ...mapActions(aptCommentStore, ["getAptCommentList"]),
-    registComment() {},
+    registComment() {
+      const params = {
+        aptCode: null,
+        comment: this.aptcomment,
+        writerId: null,
+      };
+      registAptComment(params);
+    },
   },
 };
 </script>
