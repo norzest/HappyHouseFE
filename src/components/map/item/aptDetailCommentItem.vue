@@ -4,15 +4,20 @@
       <span>{{ writerId }}</span>
       <span class="date">{{ createdAt }}</span>
     </div>
-    <div class="commenttext">{{ content }}</div>
-    <button @click="updateAptComment">수정</button>
-    <button @click="deleteAptComment">삭제</button>
+    <textarea v-show="isUpdate" v-model="newContent"></textarea>
+    <div v-show="!isUpdate" class="commenttext">{{ content }}</div>
+    <button v-show="isU" @click="updateAptComment">수정</button>
+    <button v-show="isUpdate" @click="updateCancel">취소</button>
+    <span v-show="!isUpdate">
+      <button v-show="isU" @click="deleteAptComment">삭제</button>
+    </span>
   </div>
 </template>
 
 <script>
 import { updateAptComment, deleteAptComment } from "@/api/aptcomment.js";
-
+import { mapState } from "vuex";
+const memberStore = "memberStore";
 export default {
   name: "aptDetailCommentItem",
   props: {
@@ -21,13 +26,42 @@ export default {
     createdAt: String,
     content: String,
   },
+  data() {
+    return {
+      isU: false,
+      isUpdate: false,
+      newContent: "",
+    };
+  },
+  mounted() {
+    this.isYou();
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   methods: {
+    isYou() {
+      if (this.writerId == this.userInfo.id) {
+        this.isU = true;
+      } else {
+        this.isU = false;
+      }
+    },
+    updateCancel() {
+      this.newContent = "";
+      this.isUpdate = false;
+    },
     updateAptComment() {
-      const params = {
-        commentId: this.commentId,
-        content: this.content,
-      };
-      updateAptComment(params);
+      if (this.isUpdate) {
+        const params = {
+          commentId: this.commentId,
+          content: this.newContent,
+        };
+        updateAptComment(params);
+        this.isUpdate = false;
+      } else {
+        this.isUpdate = true;
+      }
     },
     deleteAptComment() {
       const params = {

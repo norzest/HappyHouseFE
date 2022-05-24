@@ -89,11 +89,13 @@ export default {
   watch: {
     apt() {
       this.makeAptDetail();
+      this.setImg();
     },
     followapts() {
       this.setImg();
     },
   },
+
   methods: {
     ...mapActions(aptStore, ["detailApt", "getFollowAptList"]),
     aptList() {
@@ -143,8 +145,8 @@ export default {
       }
     },
     setImg() {
-      for (let apt of this.followapts) {
-        if (apt.aptCode == this.apt.aptCode) {
+      for (let a of this.followapts) {
+        if (a.aptCode == this.apt.aptCode) {
           this.isFollow = true;
           break;
         } else {

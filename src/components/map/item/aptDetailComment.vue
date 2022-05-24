@@ -4,7 +4,7 @@
       <textarea
         name="comment"
         id="comment"
-        v-model="aptcomment"
+        v-model="myAptComment"
         cols="30"
         rows="4"
       ></textarea>
@@ -24,7 +24,8 @@
 import { registAptComment } from "@/api/aptcomment.js";
 import aptDetailCommentItem from "@/components/map/item/aptDetailCommentItem.vue";
 import { mapState, mapActions } from "vuex";
-
+const aptStore = "aptStore";
+const memberStore = "memberStore";
 const aptCommentStore = "aptCommentStore";
 
 export default {
@@ -32,27 +33,29 @@ export default {
   name: "aptDetailComment",
   data() {
     return {
-      aptcomment: "",
+      myAptComment: "",
     };
   },
   computed: {
+    ...mapState(aptStore, ["apt"]),
     ...mapState(aptCommentStore, ["aptComment"]),
+    ...mapState(memberStore, ["userInfo"]),
   },
-  // watch: {
-  //   aptComment() {
-  //     this.getAptCommentList("11110000000001");
-  //   },
-  // },
+  watch: {
+    apt: function () {
+      this.getAptCommentList(this.apt.aptCode);
+    },
+  },
   created() {
-    this.getAptCommentList("11110000000001");
+    this.getAptCommentList(this.apt.aptCode);
   },
   methods: {
     ...mapActions(aptCommentStore, ["getAptCommentList"]),
     registComment() {
       const params = {
-        aptCode: null,
-        comment: this.aptcomment,
-        writerId: null,
+        aptCode: this.apt.aptCode,
+        content: this.myAptComment,
+        writerId: this.userInfo.id,
       };
       registAptComment(params);
     },
