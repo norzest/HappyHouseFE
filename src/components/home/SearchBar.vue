@@ -7,7 +7,7 @@
       @keyup.enter="searchApt"
     />
     <button @click="searchApt">
-      <img src="../../assets/img/search.png" alt="" />
+      <img src="@/assets/img/search.png" alt="" />
     </button>
   </div>
 </template>

@@ -54,40 +54,7 @@
       </div>
     </div>
     <div class="comment">
-      <div class="inputbox">
-        <textarea name="comment" id="comment" cols="30" rows="4"></textarea>
-        <button>작성</button>
-      </div>
-      <div class="commentlist">
-        <div class="commentitem">
-          <div class="userid">
-            <span>asdf****</span>
-            <span class="date">22.05.24.</span>
-          </div>
-          <div class="commenttext">테스트 댓글</div>
-        </div>
-        <div class="commentitem">
-          <div class="userid">
-            <span>asdf****</span>
-            <span class="date">22.05.24.</span>
-          </div>
-          <div class="commenttext">테스트 댓글</div>
-        </div>
-        <div class="commentitem">
-          <div class="userid">
-            <span>asdf****</span>
-            <span class="date">22.05.24.</span>
-          </div>
-          <div class="commenttext">테스트 댓글</div>
-        </div>
-        <div class="commentitem">
-          <div class="userid">
-            <span>asdf****</span>
-            <span class="date">22.05.24.</span>
-          </div>
-          <div class="commenttext">테스트 댓글</div>
-        </div>
-      </div>
+      <apt-detail-comment></apt-detail-comment>
     </div>
   </div>
 </template>
@@ -95,6 +62,7 @@
 <script>
 import { deleteInterestedAptList, registInterestedAptList } from "@/api/apt.js";
 import aptDetailItem from "@/components/map/item/aptDetailItem.vue";
+import aptDetailComment from "@/components/map/item/aptDetailComment.vue";
 import { mapState, mapActions } from "vuex";
 const memberStore = "memberStore";
 const aptStore = "aptStore";
@@ -103,6 +71,7 @@ export default {
   name: "aptDetail",
   components: {
     aptDetailItem,
+    aptDetailComment,
   },
   data() {
     return {
@@ -192,27 +161,11 @@ export default {
   width: 100%;
   padding-top: 20px;
 }
-.userid {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-  font-size: 14px;
-}
-.commenttext {
-  margin: 10px 0;
-}
-.date {
-  color: gray;
-}
-.comment .inputbox {
+
+.comment {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.commentitem {
-  margin: 10px;
-  padding: 10px;
 }
 
 .inputbox button {
