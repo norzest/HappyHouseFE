@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     mvModifyArticle() {
-      this.$router.push({ name: "boardModify" });
+      this.$router.push({ name: "noticeModify" });
     },
     deleteArticle() {
       if (confirm("삭제하시겠습니까?")) {
@@ -58,11 +58,11 @@ export default {
           },
           () => {},
         );
-        this.$router.go(this.$router.push({ name: "boardList" }));
+        this.$router.go(this.$router.push({ name: "noticeList" }));
       }
     },
     mvBoardList() {
-      this.$router.push({ name: "boardList" });
+      this.$router.push({ name: "noticeList" });
     },
   },
   // filters: {

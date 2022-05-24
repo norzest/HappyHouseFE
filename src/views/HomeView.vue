@@ -8,8 +8,8 @@
       <search-bar class="search"></search-bar>
     </div>
     <div class="board">
-      <rolling-message></rolling-message>
-      <rolling-message></rolling-message>
+      <rolling-message boardType="anno"></rolling-message>
+      <rolling-message boardType="free"></rolling-message>
     </div>
     <footer-nav></footer-nav>
   </div>

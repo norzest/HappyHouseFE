@@ -1,9 +1,18 @@
 <template>
-  <div></div>
+  <div>
+    <notice-input-item type="register" />
+  </div>
 </template>
 
 <script>
-export default {};
+import NoticeInputItem from "@/components/notice/item/NoticeInputItem.vue";
+
+export default {
+  name: "NoticeRegister",
+  components: {
+    NoticeInputItem,
+  },
+};
 </script>
 
 <style></style>

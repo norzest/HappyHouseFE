@@ -110,9 +110,21 @@ const routes = [
       },
       {
         path: "detail/:id",
-        name: "NoticeDetail",
+        name: "noticeDetail",
         beforeEnter: onlyAuthUser,
         component: () => import("@/components/notice/NoticeDetail.vue"),
+      },
+      {
+        path: "modify/:id",
+        name: "noticeModify",
+        beforeEnter: onlyAuthUser,
+        component: () => import("@/components/notice/NoticeModify.vue"),
+      },
+      {
+        path: "regist",
+        name: "noticeRegister",
+        beforeEnter: onlyAuthUser,
+        component: () => import("@/components/notice/NoticeRegister.vue"),
       },
     ],
   },

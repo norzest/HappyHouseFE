@@ -157,28 +157,6 @@ export default {
 </script>
 
 <style scoped>
-.comment {
-  width: 100%;
-  padding-top: 20px;
-}
-
-.comment {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inputbox button {
-  height: 67px;
-  margin-left: 10px;
-  background-color: #996a54;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 0 14px;
-  cursor: pointer;
-}
 /* ----------------------- */
 
 .exit {

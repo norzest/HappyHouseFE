@@ -1,19 +1,15 @@
 <template>
   <div class="list">
-    <div class="title">게시판</div>
+    <div class="title">
+      {{ boardType == "anno" ? "공지사항" : "자유게시판" }}
+    </div>
     <div class="contents">
       <div class="cnts">
-        <div class="content">
-          <p>안녕하세요 1</p>
-          <p>22.01.11.</p>
-        </div>
-        <div class="content">
-          <p>안녕하세요 2</p>
-          <p>22.01.11.</p>
-        </div>
-        <div class="content">
-          <p>안녕하세요 3</p>
-          <p>22.01.11.</p>
+        <div v-for="article in articles" :key="article.id">
+          <div class="content" @click="clickboard(article.id)">
+            <p>{{ article.title }}</p>
+            <p>{{ article.createdAt | date }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -21,17 +17,61 @@
 </template>
 
 <script>
-// const aa = setInterval(function () {
-//   this.$refs.cnts.style.display = "none";
-// }, 3000);
-// aa();
-export default {};
+import { listArticle } from "@/api/board.js";
+export default {
+  props: {
+    boardType: String,
+  },
+  data() {
+    return {
+      articles: [],
+    };
+  },
+  created() {
+    listArticle(
+      1,
+      null,
+      null,
+      this.boardType,
+      (response) => {
+        this.articles = response.data.articles;
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
+  },
+  mounted() {
+    // this.rolling();
+  },
+  methods: {
+    clickboard(id) {
+      this.$router.push(
+        `/${this.boardType == "anno" ? "notice" : "board"}/detail/${id}`,
+      );
+    },
+    rolling() {
+      setInterval(function () {
+        console.log(this.$refs.cntzz);
+      }, 3000);
+    },
+  },
+  filters: {
+    date(val) {
+      return val.substr(0, 10);
+    },
+  },
+};
 </script>
 
 <style scoped>
+.cnts-enter-active,
+.cnts-leave-active {
+  transform: translateY(-50px);
+}
 .list {
   width: 50%;
-  height: 100px;
+  height: 150px;
   border: 1px solid lightgray;
   padding: 10px;
 }
@@ -42,14 +82,19 @@ export default {};
 }
 .contents {
   margin: 20px 15px;
-  height: 16px;
+  height: 75px;
   overflow: hidden;
 }
 .cnts {
-  transform: translateY(-32px);
+  transition: 3s;
+}
+.cnts:hover {
+  transform: translateY(-50px);
 }
 .content {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 </style>

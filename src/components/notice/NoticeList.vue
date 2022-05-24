@@ -18,24 +18,24 @@
         </tr>
       </thead>
       <tbody>
-        <board-list-item
+        <notice-list-item
           v-for="article in articles"
           :key="article.id"
           v-bind="article"
-        ></board-list-item>
+        ></notice-list-item>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import BoardListItem from "@/components/board/item/BoardListItem";
+import NoticeListItem from "@/components/notice/item/NoticeListItem";
 import { listArticle } from "@/api/board.js";
 
 export default {
   name: "BoardList",
   components: {
-    BoardListItem,
+    NoticeListItem,
   },
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     mvWrite() {
-      this.$router.push({ name: "boardRegister" });
+      this.$router.push({ name: "noticeRegister" });
     },
   },
 };
