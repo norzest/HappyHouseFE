@@ -17,8 +17,8 @@ import KakaoMap from "@/components/map/KakaoMap.vue";
 import LocalBar from "@/components/map/LocalBar.vue";
 import aptInfoList from "@/components/map/aptInfoList.vue";
 import aptDetail from "@/components/map/aptDetail.vue";
-import { mapState } from "vuex";
-
+// import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 const aptStore = "aptStore";
 
 export default {
@@ -29,8 +29,23 @@ export default {
     aptInfoList,
     aptDetail,
   },
+  data() {
+    return {
+      tf: false,
+    };
+  },
   computed: {
     ...mapState(aptStore, ["apt"]),
+  },
+  methods: {
+    ...mapActions(aptStore, ["detailApt"]),
+  },
+  created() {
+    const a = {
+      apartmentName: null,
+      juso: null,
+    };
+    this.detailApt(a);
   },
 };
 </script>

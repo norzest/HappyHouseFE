@@ -114,7 +114,7 @@ header #member {
   height: 46px;
   border-radius: 23px;
   font-size: 20px;
-  background-color: #f8edd3;
+  background-color: #fbf7ef;
   display: flex;
   justify-content: center;
   align-items: center;

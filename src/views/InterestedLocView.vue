@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div>관심 매물</div>
+    <div class="title">
+      <h2>관심 매물</h2>
+    </div>
     <interested-loc-list></interested-loc-list>
   </div>
 </template>
@@ -16,4 +18,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.title {
+  width: 90%;
+  font-size: 24px;
+  padding: 50px 20px 30px;
+  border-bottom: 2px solid lightgray;
+  margin: 0 auto;
+}
+</style>

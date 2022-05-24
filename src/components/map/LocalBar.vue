@@ -170,7 +170,6 @@ export default {
       this.getAptList(dym);
     },
     toggleClick() {
-      console.log("ggdg");
       this.tr = !this.tr;
     },
   },

@@ -53,7 +53,42 @@
         </table>
       </div>
     </div>
-    <div class="comment"></div>
+    <div class="comment">
+      <div class="inputbox">
+        <textarea name="comment" id="comment" cols="30" rows="4"></textarea>
+        <button>작성</button>
+      </div>
+      <div class="commentlist">
+        <div class="commentitem">
+          <div class="userid">
+            <span>asdf****</span>
+            <span class="date">22.05.24.</span>
+          </div>
+          <div class="commenttext">테스트 댓글</div>
+        </div>
+        <div class="commentitem">
+          <div class="userid">
+            <span>asdf****</span>
+            <span class="date">22.05.24.</span>
+          </div>
+          <div class="commenttext">테스트 댓글</div>
+        </div>
+        <div class="commentitem">
+          <div class="userid">
+            <span>asdf****</span>
+            <span class="date">22.05.24.</span>
+          </div>
+          <div class="commenttext">테스트 댓글</div>
+        </div>
+        <div class="commentitem">
+          <div class="userid">
+            <span>asdf****</span>
+            <span class="date">22.05.24.</span>
+          </div>
+          <div class="commenttext">테스트 댓글</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -153,6 +188,46 @@ export default {
 </script>
 
 <style scoped>
+.comment {
+  width: 100%;
+  margin-top: 20px;
+}
+.userid {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-size: 14px;
+}
+.commenttext {
+  margin: 10px 0;
+}
+.date {
+  color: gray;
+}
+.comment .inputbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commentitem {
+  margin: 10px;
+  padding: 10px;
+}
+
+.inputbox button {
+  height: 67px;
+  margin-left: 10px;
+  background-color: #996a54;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 0 14px;
+  cursor: pointer;
+}
+/* ----------------------- */
+
 .exit {
   padding-bottom: 5px;
 }
