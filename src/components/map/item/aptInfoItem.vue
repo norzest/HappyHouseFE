@@ -15,7 +15,9 @@
       />
     </div>
     <div class="aptlist" @click="aptDetail">
-      <div class="pickimg"></div>
+      <div class="pickimg">
+        <img src="../../../assets/img/location.png" alt="" />
+      </div>
       <div class="apttext">
         <p class="title">{{ apartmentName }}</p>
         <p class="juso">{{ juso }}</p>
@@ -129,10 +131,17 @@ export default {
 .pickimg {
   width: 60px;
   height: 60px;
-  background-color: #e9e8e6;
+  background-color: #fbf7ef;
   border-radius: 30px;
   margin-right: 15px;
+  display: flex;
   flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+.pickimg img {
+  text-align: center;
+  width: 30px;
 }
 .interested {
   position: absolute;

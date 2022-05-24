@@ -16,7 +16,7 @@
         >
       </div>
       <div v-if="btnCh" class="register">
-        <button @click="registerBoard">글쓰기</button>
+        <button @click="registerBoard" class="rgboardbtn">글쓰기</button>
       </div>
     </div>
     <div class="line"></div>
@@ -118,5 +118,14 @@ export default {
   border-radius: 10px 10px 0 0;
   z-index: 10;
   font-weight: bold;
+}
+.rgboardbtn {
+  background: #996a54;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>

@@ -42,4 +42,7 @@ export default {
   background-color: #e4d6ba;
   cursor: pointer;
 }
+.up {
+  border-bottom: 2px solid #e9e8e6;
+}
 </style>

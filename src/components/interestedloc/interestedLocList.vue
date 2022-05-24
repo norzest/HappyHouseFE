@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="interlist">
     <interested-loc-item
       v-for="apt in followapts"
       :key="apt.aptCode"
@@ -36,4 +36,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.interlist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px 50px;
+}
+</style>

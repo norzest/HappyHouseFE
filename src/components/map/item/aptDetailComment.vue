@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div>
-      <input type="text" class="input" />
-      <button @click="registComment">입력</button>
+    <div class="inputbox">
+      <textarea name="comment" id="comment" cols="30" rows="4"></textarea>
+      <button @click="registComment">작성</button>
     </div>
-    <div>
+    <div class="commentlist">
       <apt-detail-comment-item></apt-detail-comment-item>
     </div>
   </div>
@@ -31,4 +31,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.inputbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -18,24 +18,24 @@
         </tr>
       </thead>
       <tbody>
-        <notice-list-item
+        <board-list-item
           v-for="article in articles"
           :key="article.id"
           v-bind="article"
-        ></notice-list-item>
+        ></board-list-item>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import NoticeListItem from "@/components/notice/item/NoticeListItem.vue";
+import BoardListItem from "@/components/board/item/BoardListItem";
 import { listArticle } from "@/api/board.js";
 
 export default {
   name: "BoardList",
   components: {
-    NoticeListItem,
+    BoardListItem,
   },
   data() {
     return {
@@ -61,6 +61,11 @@ export default {
       },
     );
   },
+  methods: {
+    mvWrite() {
+      this.$router.push({ name: "boardRegister" });
+    },
+  },
 };
 </script>
 
@@ -69,27 +74,26 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .boardtable {
-  width: 80%;
+  width: 100%;
+  margin: 0 20px;
 }
 
 .boardtable thead {
-  background-color: #e9e8e6;
+  background-color: #c6957f;
+  color: white;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
 }
-
 .boardtable thead,
 .boardtable tbody {
   text-align: center;
 }
 .boardtable tr td,
 .boardtable tr th {
-  padding: 10px;
-}
-
-.boardtable tbody tr:nth-child(2n) {
-  background-color: #f3f2f0;
+  padding: 13px 10px;
 }
 </style>

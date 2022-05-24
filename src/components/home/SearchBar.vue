@@ -2,13 +2,23 @@
   <div class="search">
     <input type="text" v-model="apartmentName" class="input" />
     <button @click="searchApt">
-      <img src="../../assets/img/search.png" alt="" />
+      <img src="@/assets/img/search.png" alt="" />
     </button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "SearchBar",
+  data() {
+    return {
+      apartmentName: null,
+    };
+  },
+  methods: {
+    searchApt() {},
+  },
+};
 </script>
 
 <style scoped>
