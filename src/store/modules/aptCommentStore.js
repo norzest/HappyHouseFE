@@ -1,7 +1,7 @@
 import { aptCommentList } from "@/api/aptcomment.js";
 
 const aptCommentStore = {
-  namespace: true,
+  namespaced: true,
   state: {
     aptComment: null,
   },
@@ -19,7 +19,6 @@ const aptCommentStore = {
       aptCommentList(
         params,
         (response) => {
-          //console.log(response.data);
           commit("SET_APT_COMMENT_LIST", response.data);
         },
         (error) => {

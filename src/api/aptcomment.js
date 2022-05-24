@@ -4,7 +4,7 @@ const api = apiInstance();
 
 function aptCommentList(params, success, fail) {
   api
-    .get(`/aptcomment/getcomment`, {
+    .get(`/aptcomment/comment`, {
       params: {
         aptCode: params.aptCode,
       },

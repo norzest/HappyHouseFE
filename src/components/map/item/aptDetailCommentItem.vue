@@ -1,16 +1,21 @@
 <template>
   <div class="commentitem">
     <div class="userid">
-      <span>asdf****</span>
-      <span class="date">22.05.24.</span>
+      <span>{{ writerId }}</span>
+      <span class="date">{{ createdAt }}</span>
     </div>
-    <div class="commenttext">테스트 댓글</div>
+    <div class="commenttext">{{ content }}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "aptDetailCommentItem",
+  props: {
+    writerId: String,
+    createdAt: String,
+    content: String,
+  },
 };
 </script>
 
