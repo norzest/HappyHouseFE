@@ -90,6 +90,7 @@ export default {
           var aptDt = {
             apartmentName: item.aptName,
             juso: item.dong + " " + item.roadName + " " + item.jibun,
+            aptCode: item.aptCode,
           };
           this.detailApt(aptDt);
           this.map.setLevel(5);
