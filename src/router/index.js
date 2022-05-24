@@ -120,6 +120,13 @@ const routes = [
     path: "/map",
     name: "map",
     component: () => import("@/views/MapView.vue"),
+    children: [
+      {
+        path: ":aptname",
+        name: "aptnameSearch",
+        component: () => import("@/views/MapView.vue"),
+      },
+    ],
   },
   {
     path: "/interestedloc",

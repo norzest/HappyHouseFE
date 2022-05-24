@@ -30,7 +30,7 @@
       <div>
         <table>
           <colgroup>
-            <col style="width: 30%" />
+            <col style="width: 35%" />
             <col style="width: 30%" />
             <col style="width: 30%" />
             <col style="width: 10%" />
@@ -190,7 +190,7 @@ export default {
 <style scoped>
 .comment {
   width: 100%;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 .userid {
   display: flex;
@@ -272,8 +272,12 @@ export default {
 }
 .money {
   height: 200px;
-  overflow: auto;
+  overflow: hidden;
   margin: 15px 10px;
+  position: relative;
+}
+.money:hover {
+  overflow: auto;
 }
 .money::-webkit-scrollbar {
   width: 12px;

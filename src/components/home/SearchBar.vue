@@ -1,6 +1,11 @@
 <template>
   <div class="search">
-    <input type="text" v-model="apartmentName" class="input" />
+    <input
+      type="text"
+      v-model="apartmentName"
+      class="input"
+      @keyup.enter="searchApt"
+    />
     <button @click="searchApt">
       <img src="../../assets/img/search.png" alt="" />
     </button>
@@ -8,7 +13,28 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+const aptStore = "aptStore";
+export default {
+  data() {
+    return {
+      apartmentName: "",
+    };
+  },
+  methods: {
+    ...mapActions(aptStore, ["getAptList"]),
+    searchApt() {
+      const dym = {
+        dongCode: this.dongCode,
+        year: this.year,
+        month: this.month,
+        apartmentName: this.apartmentName,
+      };
+      this.$router.push(`/map/${this.apartmentName}`);
+      this.getAptList(dym);
+    },
+  },
+};
 </script>
 
 <style scoped>

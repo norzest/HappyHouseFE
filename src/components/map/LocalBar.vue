@@ -137,6 +137,7 @@ export default {
     this.CLEAR_GUGUN_LIST();
     this.CLEAR_DONG_LIST();
     this.getSido();
+    this.apartmentName = this.$route.params.aptname;
   },
   methods: {
     ...mapActions(localStore, ["getSido", "getGugun", "getDong"]),
