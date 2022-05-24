@@ -53,13 +53,16 @@
         </table>
       </div>
     </div>
-    <div class="comment"></div>
+    <div class="comment">
+      <apt-detail-comment></apt-detail-comment>
+    </div>
   </div>
 </template>
 
 <script>
 import { deleteInterestedAptList, registInterestedAptList } from "@/api/apt.js";
 import aptDetailItem from "@/components/map/item/aptDetailItem.vue";
+import aptDetailComment from "@/components/map/item/aptDetailComment.vue";
 import { mapState, mapActions } from "vuex";
 const memberStore = "memberStore";
 const aptStore = "aptStore";
@@ -68,6 +71,7 @@ export default {
   name: "aptDetail",
   components: {
     aptDetailItem,
+    aptDetailComment,
   },
   data() {
     return {
