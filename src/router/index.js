@@ -132,6 +132,7 @@ const routes = [
     path: "/map",
     name: "map",
     component: () => import("@/views/MapView.vue"),
+    beforeEnter: onlyAuthUser,
     children: [
       {
         path: ":aptname",
@@ -143,6 +144,7 @@ const routes = [
   {
     path: "/interestedloc",
     name: "interestedloc",
+    beforeEnter: onlyAuthUser,
     component: () => import("@/views/InterestedLocView.vue"),
   },
   {

@@ -137,11 +137,11 @@ export default {
     this.CLEAR_GUGUN_LIST();
     this.CLEAR_DONG_LIST();
     this.getSido();
-    this.apartmentName = this.$route.params.aptname;
+    this.apt = this.$route.params.aptname;
   },
   methods: {
     ...mapActions(localStore, ["getSido", "getGugun", "getDong"]),
-    ...mapActions(aptStore, ["getAptList"]),
+    ...mapActions(aptStore, ["detailApt", "getAptList"]),
     ...mapMutations(localStore, [
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
@@ -162,6 +162,12 @@ export default {
       if (this.gugunCode) this.getDong(this.gugunCode.substring(0, 5));
     },
     searchApt() {
+      const a = {
+        apartmentName: null,
+        juso: null,
+      };
+      this.detailApt(a);
+
       const dym = {
         dongCode: this.dongCode,
         year: this.year,
