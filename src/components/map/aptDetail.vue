@@ -254,51 +254,7 @@ export default {
   opacity: 0;
   -webkit-transition: all 0.5s;
 }
-/* .money {
-  height: 200px;
-  margin: 15px 10px;
-  position: relative;
-}
 
-.moneytable {
-  width: 100%;
-  height: 200px;
-  overflow-y: scroll;
-}
-
-.moneytable::-webkit-scrollbar {
-  overflow: visible;
-  width: 12px;
-}
-
-.moneytable::-webkit-scrollbar-thumb {
-  overflow: visible;
-  background-color: #e1e1e1;
-  border-radius: 12px;
-  background-clip: padding-box;
-  border: 3px solid transparent;
-}
-
-.moneytable::-webkit-scrollbar-track {
-  border-radius: 12px;
-}
-
-.cover-bar {
-  width: 10px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  -webkit-transition: all 0.5s;
-  opacity: 1;
-  /* 배경색을 상자색과 똑같이 맞춰준다 */
-/* } */
-
-/* 중요한 부분 */
-/* .money:hover .cover-bar {
-  opacity: 0;
-  -webkit-transition: all 0.5s;
-} */
 .money table {
   width: 100%;
   text-align: center;
