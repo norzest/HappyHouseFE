@@ -22,20 +22,20 @@ export default {
   },
   watch: {
     apts() {
+      console.log("watch apts");
       this.makeList();
     },
   },
   mounted() {
-    if (!window.kakao || !window.kakao.maps) {
-      const script = document.createElement("script");
-      script.src = KAKAO_MAP_URL;
-
-      script.addEventListener("load", () => {
-        window.kakao.maps.load(this.initMap);
-      });
-      document.head.appendChild(script);
-    } else {
+    console.log("mounted");
+    if (window.kakao && window.kakao.maps) {
       this.initMap();
+    } else {
+      const script = document.createElement("script");
+      /* global kakao */
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src = KAKAO_MAP_URL;
+      document.head.appendChild(script);
     }
   },
   methods: {
@@ -47,7 +47,6 @@ export default {
         center: new window.kakao.maps.LatLng(37.5642135, 127.0016985),
         level: 8,
       };
-
       this.map = new window.kakao.maps.Map(container, options);
     },
     makeList() {
@@ -56,6 +55,7 @@ export default {
       this.markerObjs.forEach((el) => el.marker.setMap(null));
       this.markerObjs = [];
 
+      console.log("makeList - marker Setting");
       // 마커 세팅
       for (let item of this.apts) {
         this.setMarker(item);
@@ -76,6 +76,7 @@ export default {
       var coords = new window.kakao.maps.LatLng(item.lat, item.lng);
       const obj = this.markerObjs.find((el) => el.aptCode === item.aptCode);
       let marker;
+
       if (!obj) {
         marker = new window.kakao.maps.Marker({
           map: this.map,

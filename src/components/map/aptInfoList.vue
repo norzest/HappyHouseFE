@@ -10,8 +10,8 @@
 
 <script>
 import aptInfoItem from "@/components/map/item/aptInfoItem.vue";
-import { mapState } from "vuex";
-
+import { mapState, mapActions } from "vuex";
+const memberStore = "memberStore";
 const aptStore = "aptStore";
 
 export default {
@@ -24,7 +24,15 @@ export default {
   components: {
     aptInfoItem,
   },
+  created() {
+    const params = {
+      memberId: this.userInfo.id,
+    };
+
+    this.getFollowAptList(params);
+  },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     ...mapState(aptStore, ["apts"]),
   },
   watch: {
@@ -33,6 +41,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(aptStore, ["getFollowAptList"]),
     makeAptsSimple() {
       let tempArray = [];
       this.aptsSimple = [];

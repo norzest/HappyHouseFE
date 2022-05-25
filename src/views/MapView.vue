@@ -20,7 +20,7 @@ import aptDetail from "@/components/map/aptDetail.vue";
 // import { mapState } from "vuex";
 import { mapState, mapActions } from "vuex";
 const aptStore = "aptStore";
-
+const memberStore = "memberStore";
 export default {
   name: "MapView",
   components: {
@@ -36,16 +36,20 @@ export default {
   },
   computed: {
     ...mapState(aptStore, ["apt"]),
+    ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
     ...mapActions(aptStore, ["detailApt"]),
   },
-  created() {
-    const a = {
-      apartmentName: null,
-      juso: null,
-    };
-    this.detailApt(a);
+  watch: {
+    userInfo() {
+      const a = {
+        apartmentName: null,
+        juso: null,
+        aptCode: null,
+      };
+      this.detailApt(a);
+    },
   },
 };
 </script>

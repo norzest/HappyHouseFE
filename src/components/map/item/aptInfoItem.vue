@@ -16,7 +16,7 @@
     </div>
     <div class="aptlist" @click="aptDetail">
       <div class="pickimg">
-        <img src="../../../assets/img/location.png" alt="" />
+        <img src="@/assets/img/location.png" alt="" />
       </div>
       <div class="apttext">
         <p class="title">{{ apartmentName }}</p>
@@ -49,12 +49,16 @@ export default {
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
-    ...mapState(aptStore, ["followapts"]),
+    ...mapState(aptStore, ["apts", "followapts"]),
   },
   created() {
     this.setImg();
   },
   watch: {
+    apts() {
+      this.setImg();
+    },
+
     followapts() {
       this.setImg();
     },

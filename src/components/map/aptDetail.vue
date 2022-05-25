@@ -3,7 +3,7 @@
     <div class="exit"><button @click="aptList" class="back">〈</button></div>
     <div class="main">
       <div class="aptimg">
-        <img src="../../assets/img/apt.jpg" alt="" />
+        <img src="@/assets/img/apt.jpg" alt="" />
       </div>
       <div class="info">
         <div>
@@ -84,6 +84,12 @@ export default {
     ...mapState(aptStore, ["apt", "apts", "followapts"]),
   },
   created() {
+    const params = {
+      memberId: this.userInfo.id,
+    };
+
+    this.getFollowAptList(params);
+    this.makeAptDetail();
     this.setImg();
   },
   watch: {
@@ -102,12 +108,14 @@ export default {
       const a = {
         apartmentName: null,
         juso: null,
+        aptCode: null,
       };
       this.detailApt(a);
     },
     makeAptDetail() {
       this.aptDetail = [];
       if (this.apt.apartmentName != null) {
+        console.log(this.apt);
         for (let item of this.apts) {
           if (item.aptName == this.apt.apartmentName) {
             this.aptDetail.push(item);
