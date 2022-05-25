@@ -40,22 +40,22 @@ export default {
       for (let item of this.apts) {
         var idx = tempArray.indexOf(item.aptCode);
         // 처음 나온 아파트 코드라면
+        let chk = Number(item.dealAmount.replace(/,/gi, ""));
         if (idx < 0) {
           tempArray.push(item.aptCode);
           var temp = {
             aptCode: item.aptCode,
             apartmentName: item.aptName,
             juso: item.dong + " " + item.roadName + " " + item.jibun,
-            min: item.dealAmount,
-            max: item.dealAmount,
+            min: String(chk),
+            max: String(chk),
           };
-
           this.aptsSimple.push(temp);
         } else {
-          if (item.dealAmount < this.aptsSimple[idx].min) {
-            this.aptsSimple[idx].min = item.dealAmount;
-          } else if (item.dealAmount > this.aptsSimple[idx].max) {
-            this.aptsSimple[idx].max = item.dealAmount;
+          if (chk < Number(this.aptsSimple[idx].min)) {
+            this.aptsSimple[idx].min = String(chk);
+          } else if (chk > Number(this.aptsSimple[idx].max)) {
+            this.aptsSimple[idx].max = String(chk);
           }
         }
       }

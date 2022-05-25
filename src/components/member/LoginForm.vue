@@ -30,6 +30,13 @@
           />
         </label>
         <button @click="loginMethod">로그인</button>
+        <a
+          href="javascript:void(0)"
+          class="passwordsearch"
+          @click="wherePassword"
+        >
+          비밀번호 찾기
+        </a>
       </div>
     </div>
   </div>
@@ -75,6 +82,9 @@ export default {
         this.error = "잘못된 아이디 혹은 비밀번호입니다.";
         this.user.pwd = "";
       }
+    },
+    wherePassword() {
+      this.$router.push({ name: "searchPassword" });
     },
   },
 };
@@ -149,5 +159,15 @@ button {
 }
 .ipf {
   padding: 14px 0 2px 15px !important;
+}
+.passwordsearch {
+  background-color: transparent;
+  color: black;
+  font-weight: 400;
+  text-decoration: underline;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  margin: 20px 0 0;
 }
 </style>

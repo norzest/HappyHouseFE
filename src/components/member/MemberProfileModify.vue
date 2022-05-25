@@ -58,6 +58,9 @@
         /></label>
       </div>
       <div class="btn">
+        <router-link :to="{ name: 'changePassword' }" class="button btnch"
+          >비밀번호 변경</router-link
+        >
         <button @click="checkModify">수정</button>
         <button @click="cancel">취소</button>
       </div>
@@ -196,6 +199,21 @@ button {
   color: white;
   font-weight: bold;
   padding: 0 10px;
+}
+.button {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin: 20px 5px 0;
+  background-color: #996a54;
+  color: white;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.btnch {
+  font-size: 14px;
+  line-height: 30px;
 }
 
 .inputname::before {
