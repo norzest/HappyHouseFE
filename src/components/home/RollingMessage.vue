@@ -88,13 +88,18 @@ export default {
 .cnts {
   transition: 3s;
 }
-.cnts:hover {
+/* .cnts:hover {
   transform: translateY(-50px);
-}
+} */
 .content {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
   cursor: pointer;
+}
+
+.content:hover {
+  color: gray;
+  text-decoration: underline;
 }
 </style>

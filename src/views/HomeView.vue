@@ -11,6 +11,7 @@
       <rolling-message boardType="anno"></rolling-message>
       <rolling-message boardType="free"></rolling-message>
     </div>
+    <news-crawl></news-crawl>
     <footer-nav></footer-nav>
   </div>
 </template>
@@ -20,12 +21,14 @@
 import FooterNav from "@/components/FooterNav.vue";
 import SearchBar from "@/components/home/SearchBar.vue";
 import RollingMessage from "@/components/home/RollingMessage.vue";
+import NewsCrawl from "@/components/home/NewsCrawl.vue";
 export default {
   name: "HomeView",
   components: {
     FooterNav,
     SearchBar,
     RollingMessage,
+    NewsCrawl,
   },
 };
 </script>
