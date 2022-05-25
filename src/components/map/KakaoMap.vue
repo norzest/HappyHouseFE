@@ -16,6 +16,7 @@ export default {
       count: 0,
       markerObjs: [],
       aptCodes: [],
+      clusterer: null,
     };
   },
   computed: {
@@ -38,6 +39,13 @@ export default {
       script.src = KAKAO_MAP_URL;
       document.head.appendChild(script);
     }
+
+    // 마커 클러스터러를 생성합니다
+    this.clusterer = new window.kakao.maps.MarkerClusterer({
+      map: this.map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+      averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+      minLevel: 10, // 클러스터 할 최소 지도 레벨
+    });
   },
   methods: {
     ...mapActions(aptStore, ["detailApt"]),
@@ -62,15 +70,8 @@ export default {
       for (let item of this.apts) {
         this.setMarker(item);
       }
-
-      // 마커 클러스터러를 생성합니다
-      var clusterer = new window.kakao.maps.MarkerClusterer({
-        map: this.map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-        minLevel: 10, // 클러스터 할 최소 지도 레벨
-      });
-
-      clusterer.addMarkers(this.markerObjs);
+      this.clusterer.clear();
+      this.clusterer.addMarkers(this.markerObjs);
     },
     setMarker(item) {
       var imageSrc =
