@@ -28,6 +28,8 @@ const aptStore = {
   actions: {
     getAptList: ({ commit }, dym) => {
       const params = {
+        sidoCode: dym.sidoCode,
+        gugunCode: dym.gugunCode,
         dongCode: dym.dongCode,
         year: dym.year,
         month: dym.month,

@@ -6,6 +6,8 @@ function aptList(params, success, fail) {
   api
     .get(`/apt/dongApt`, {
       params: {
+        sidoCode: params.sidoCode,
+        gugunCode: params.gugunCode,
         dongCode: params.dongCode,
         year: params.year,
         month: params.month,

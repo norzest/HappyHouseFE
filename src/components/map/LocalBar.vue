@@ -169,12 +169,42 @@ export default {
       };
       this.detailApt(a);
 
-      const dym = {
-        dongCode: this.dongCode,
-        year: this.year,
-        month: this.month,
-        apartmentName: this.apartmentName,
-      };
+      let dym = null;
+      if (!this.dongCode) {
+        if (!this.gugunCode) {
+          var sCode = null;
+          if (this.sidoCode) {
+            sCode = this.sidoCode.substring(0, 2);
+          }
+          dym = {
+            sidoCode: sCode,
+            gugunCode: null,
+            dongCode: null,
+            year: this.year,
+            month: this.month,
+            apartmentName: this.apartmentName,
+          };
+        } else {
+          dym = {
+            sidoCode: null,
+            gugunCode: this.gugunCode.substring(0, 5),
+            dongCode: null,
+            year: this.year,
+            month: this.month,
+            apartmentName: this.apartmentName,
+          };
+        }
+      } else {
+        dym = {
+          sidoCode: null,
+          gugunCode: null,
+          dongCode: this.dongCode,
+          year: this.year,
+          month: this.month,
+          apartmentName: this.apartmentName,
+        };
+      }
+
       this.getAptList(dym);
     },
     toggleClick() {

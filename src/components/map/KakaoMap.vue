@@ -15,6 +15,7 @@ export default {
       map: null,
       count: 0,
       markerObjs: [],
+      aptCodes: [],
     };
   },
   computed: {
@@ -52,14 +53,24 @@ export default {
     makeList() {
       // 마커 초기화
       this.count = 0;
-      this.markerObjs.forEach((el) => el.marker.setMap(null));
+      this.markerObjs.forEach((el) => el.setMap(null));
       this.markerObjs = [];
+      this.aptCodes = [];
 
       console.log("makeList - marker Setting");
       // 마커 세팅
       for (let item of this.apts) {
         this.setMarker(item);
       }
+
+      // 마커 클러스터러를 생성합니다
+      var clusterer = new window.kakao.maps.MarkerClusterer({
+        map: this.map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10, // 클러스터 할 최소 지도 레벨
+      });
+
+      clusterer.addMarkers(this.markerObjs);
     },
     setMarker(item) {
       var imageSrc =
@@ -74,7 +85,7 @@ export default {
       );
 
       var coords = new window.kakao.maps.LatLng(item.lat, item.lng);
-      const obj = this.markerObjs.find((el) => el.aptCode === item.aptCode);
+      const obj = this.aptCodes.find((el) => el === item.aptCode);
       let marker;
 
       if (!obj) {
@@ -85,8 +96,8 @@ export default {
           title: item.aptName,
           image: markerImage,
         });
-        this.markerObjs.push({ marker, aptCode: item.aptCode });
-
+        this.markerObjs.push(marker);
+        this.aptCodes.push(item.aptCode);
         window.kakao.maps.event.addListener(marker, "click", () => {
           var aptDt = {
             apartmentName: item.aptName,
