@@ -2,16 +2,10 @@
   <div class="board">
     <div class="btn">
       <div class="choice">
-        <router-link
-          :to="{ name: 'notice' }"
-          :class="{ checked: noticeCh }"
-          @click.native="clickBoard"
+        <router-link :to="{ name: 'notice' }" :class="{ checked: noticeCh }"
           >공지사항</router-link
         >
-        <router-link
-          :to="{ name: 'boardList' }"
-          :class="{ checked: listCh }"
-          @click.native="clickBoard"
+        <router-link :to="{ name: 'boardList' }" :class="{ checked: listCh }"
           >자유게시판</router-link
         >
       </div>
@@ -27,7 +21,7 @@
 export default {
   data() {
     return {
-      notice: true,
+      notice: null,
       registerbtn: true,
     };
   },
@@ -54,6 +48,12 @@ export default {
     },
   },
   created() {
+    if (this.$route.path.indexOf("notice") > 0) {
+      this.notice = true;
+    } else this.notice = false;
+    this.listCheck();
+  },
+  updated() {
     if (this.$route.path.indexOf("notice") > 0) {
       this.notice = true;
     } else this.notice = false;

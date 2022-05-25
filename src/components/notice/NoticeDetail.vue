@@ -120,8 +120,18 @@ export default {
   justify-content: space-between;
 }
 .btnset button {
-  border: 1px solid gray;
+  border: 1px solid #996a54;
+  color: #996a54;
+  font-weight: bold;
   padding: 2px 5px;
   background-color: #fff;
+  margin: 20px 5px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btnset button:hover {
+  background-color: #996a54;
+  color: white;
 }
 </style>

@@ -28,14 +28,18 @@
       </table>
     </div>
     <div class="btngroup">
-      <button @click="pgListArticle(1)" class="rgboardbtn">처음</button>
+      <button @click="pgListArticle(1)" class="pagebtn">〈〈</button>
       <span v-for="p in pgs" :key="p"
-        ><button @click="pgListArticle(p)" class="rgboardbtn">
+        ><button
+          @click="pgListArticle(p)"
+          class="pagebtn"
+          :class="{ act: p == nav.currentPage }"
+        >
           {{ p }}
         </button></span
       >
-      <button @click="pgListArticle(nav.totalPageCount)" class="rgboardbtn">
-        마지막
+      <button @click="pgListArticle(nav.totalPageCount)" class="pagebtn">
+        〉〉
       </button>
     </div>
   </div>
@@ -232,18 +236,28 @@ export default {
   padding: 13px 10px;
 }
 
-.rgboardbtn {
-  margin-left: 5px;
-  background: #996a54;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 10px;
-  font-weight: bold;
+.pagebtn {
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  background-color: white;
+  border: 1px solid #996a54;
+  border-radius: 5px;
+  color: #996a54;
+  margin: 2px;
+  min-width: 30px;
   cursor: pointer;
+  font-weight: bold;
+}
+.pagebtn:hover,
+.act {
+  background-color: #996a54;
+  color: white;
 }
 .btngroup {
-  margin-top: 20px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 }
 </style>

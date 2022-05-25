@@ -26,9 +26,9 @@
         </a>
       </div>
       <div class="news">
-        <a :href="news[3].link"
-          ><img :src="news[3].img" alt="" width="50px" />
-          <p>{{ news[3].title }}</p>
+        <a :href="news[4].link"
+          ><img :src="news[4].img" alt="" width="50px" />
+          <p>{{ news[4].title }}</p>
         </a>
       </div>
       <div class="news">
@@ -38,9 +38,15 @@
         </a>
       </div>
       <div class="news">
-        <a :href="news[7].link"
-          ><img :src="news[7].img" alt="" width="50px" />
-          <p>{{ news[7].title }}</p>
+        <a :href="news[8].link"
+          ><img :src="news[8].img" alt="" width="50px" />
+          <p>{{ news[8].title }}</p>
+        </a>
+      </div>
+      <div class="news">
+        <a :href="news[9].link"
+          ><img :src="news[9].img" alt="" width="50px" />
+          <p>{{ news[9].title }}</p>
         </a>
       </div>
     </carousel>
@@ -57,9 +63,8 @@ export default {
     return {
       news: null,
       options: {
-        items: 1,
+        items: 3,
         autoplay: true,
-        autoplayHoverPause: true,
         nav: false,
       },
     };
@@ -94,13 +99,14 @@ export default {
   flex-direction: column;
 }
 .news p {
-  font-size: 20px;
+  font-size: 18px;
   display: block;
   padding: 20px 0 10px;
   font-weight: bold;
+  margin: 0 20px;
 }
 .news img {
-  width: 500px !important;
+  width: 280px !important;
 }
 .newstab {
   margin-bottom: 30px;

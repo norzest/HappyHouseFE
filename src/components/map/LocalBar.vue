@@ -2,7 +2,9 @@
   <div class="first">
     <div id="searchBar">
       <input type="text" v-model="apartmentName" class="input" />
-      <button @click="searchApt">검색</button>
+      <button @click="searchApt">
+        <img src="../../assets/img/search.png" width="18px" alt="" />
+      </button>
     </div>
     <div class="checkbar">
       <div class="toggle" @click="toggleClick" :class="{ off: trigger }"></div>
@@ -217,7 +219,9 @@ export default {
 <style scoped>
 #searchBar {
   width: 320px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px 10px;
   border-bottom: 1px solid #996a54;
 }
@@ -229,6 +233,11 @@ export default {
   display: inline-block;
   margin-left: 10px;
   height: 30px;
+  background-color: #996a54;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 .checkbar {
   position: fixed;

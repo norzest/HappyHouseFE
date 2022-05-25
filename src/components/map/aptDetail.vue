@@ -27,31 +27,34 @@
       </div>
     </div>
     <div class="money">
-      <div>
-        <table>
-          <colgroup>
-            <col style="width: 35%" />
-            <col style="width: 30%" />
-            <col style="width: 30%" />
-            <col style="width: 10%" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>거래년도</th>
-              <th>가격</th>
-              <th>면적<small>(㎡)</small></th>
-              <th>층</th>
-            </tr>
-          </thead>
-          <tbody>
-            <apt-detail-item
-              v-for="(detail, index) in aptDetail"
-              :key="index"
-              v-bind="detail"
-            ></apt-detail-item>
-          </tbody>
-        </table>
+      <div class="two">
+        <div>
+          <table>
+            <colgroup>
+              <col style="width: 35%" />
+              <col style="width: 30%" />
+              <col style="width: 30%" />
+              <col style="width: 10%" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>거래년도</th>
+                <th>가격</th>
+                <th>면적<small>(㎡)</small></th>
+                <th>층</th>
+              </tr>
+            </thead>
+            <tbody>
+              <apt-detail-item
+                v-for="(detail, index) in aptDetail"
+                :key="index"
+                v-bind="detail"
+              ></apt-detail-item>
+            </tbody>
+          </table>
+        </div>
       </div>
+      <div class="cover-bar"></div>
     </div>
     <div class="comment">
       <apt-detail-comment></apt-detail-comment>
@@ -212,26 +215,90 @@ export default {
   height: 25px;
 }
 .money {
+  background-color: white;
+  margin: 15px 0 15px 15px;
+  position: relative;
+}
+
+.two {
+  width: 100%;
+  height: 250px;
+  overflow-y: scroll;
+  padding-right: 3px;
+}
+
+.two::-webkit-scrollbar {
+  width: 6px;
+}
+.two::-webkit-scrollbar,
+.two::-webkit-scrollbar-thumb {
+  overflow: visible;
+  border-radius: 4px;
+}
+.two::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.cover-bar {
+  width: 6px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transition: all 0.5s;
+  opacity: 1;
+  background-color: white;
+}
+
+.money:hover .cover-bar {
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+}
+/* .money {
   height: 200px;
-  overflow: auto;
   margin: 15px 10px;
   position: relative;
 }
 
-.money::-webkit-scrollbar {
+.moneytable {
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.moneytable::-webkit-scrollbar {
+  overflow: visible;
   width: 12px;
 }
 
-.money::-webkit-scrollbar-thumb {
+.moneytable::-webkit-scrollbar-thumb {
+  overflow: visible;
   background-color: #e1e1e1;
   border-radius: 12px;
   background-clip: padding-box;
   border: 3px solid transparent;
 }
 
-.money::-webkit-scrollbar-track {
+.moneytable::-webkit-scrollbar-track {
   border-radius: 12px;
 }
+
+.cover-bar {
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transition: all 0.5s;
+  opacity: 1;
+  /* 배경색을 상자색과 똑같이 맞춰준다 */
+/* } */
+
+/* 중요한 부분 */
+/* .money:hover .cover-bar {
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+} */
 .money table {
   width: 100%;
   text-align: center;
