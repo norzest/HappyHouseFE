@@ -165,6 +165,7 @@ export default {
       const a = {
         apartmentName: null,
         juso: null,
+        aptCode: null,
       };
       this.detailApt(a);
 
