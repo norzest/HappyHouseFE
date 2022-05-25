@@ -62,6 +62,16 @@ const routes = [
         beforeEnter: onlyAuthUser,
         component: () => import("@/components/member/MemberDelete.vue"),
       },
+      {
+        path: "searchpwd",
+        name: "searchPassword",
+        component: () => import("@/components/member/WherePassword.vue"),
+      },
+      {
+        path: "changepwd",
+        name: "changePassword",
+        component: () => import("@/components/member/PasswordChange.vue"),
+      },
     ],
   },
   {

@@ -30,6 +30,7 @@
         <router-link :to="{ name: 'memberModify' }" class="btn"
           >편집</router-link
         >
+
         <router-link :to="{ name: 'memberDelete' }" class="btn"
           >회원탈퇴</router-link
         >

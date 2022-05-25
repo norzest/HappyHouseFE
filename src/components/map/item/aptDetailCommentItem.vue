@@ -1,16 +1,18 @@
 <template>
   <div class="commentitem">
     <div class="userid">
-      <span>{{ writerId }}</span>
+      <span class="idtext">{{ writerId }}</span>
       <span class="date">{{ createdAt }}</span>
     </div>
     <textarea v-show="isUpdate" v-model="newContent"></textarea>
     <div v-show="!isUpdate" class="commenttext">{{ content }}</div>
-    <button v-show="isU" @click="updateAptComment">수정</button>
-    <button v-show="isUpdate" @click="updateCancel">취소</button>
-    <span v-show="!isUpdate">
-      <button v-show="isU" @click="deleteAptComment">삭제</button>
-    </span>
+    <div class="btnset">
+      <button v-show="isU" @click="updateAptComment" class="btn">수정</button>
+      <button v-show="isUpdate" @click="updateCancel">취소</button>
+      <span v-show="!isUpdate">
+        <button v-show="isU" @click="deleteAptComment" class="btn">삭제</button>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -33,6 +35,9 @@ export default {
       newContent: "",
     };
   },
+  created() {
+    this.newContent = this.content;
+  },
   mounted() {
     this.isYou();
   },
@@ -48,7 +53,6 @@ export default {
       }
     },
     updateCancel() {
-      this.newContent = "";
       this.isUpdate = false;
     },
     updateAptComment() {
@@ -59,21 +63,28 @@ export default {
         };
         updateAptComment(params);
         this.isUpdate = false;
+        this.$router.go();
       } else {
         this.isUpdate = true;
       }
     },
     deleteAptComment() {
-      const params = {
-        commentId: this.commentId,
-      };
-      deleteAptComment(params);
+      if (confirm("정말 삭제하시겠습니까?")) {
+        const params = {
+          commentId: this.commentId,
+        };
+        deleteAptComment(params);
+      }
+      this.$router.go();
     },
   },
 };
 </script>
 
 <style scoped>
+.idtext {
+  font-weight: bold;
+}
 .commentitem {
   margin: 10px;
   padding: 10px;
@@ -89,5 +100,14 @@ export default {
 }
 .commenttext {
   margin: 10px 0;
+}
+button {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+}
+.btnset {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

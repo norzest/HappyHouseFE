@@ -213,13 +213,11 @@ export default {
 }
 .money {
   height: 200px;
-  overflow: hidden;
+  overflow: auto;
   margin: 15px 10px;
   position: relative;
 }
-.money:hover {
-  overflow: auto;
-}
+
 .money::-webkit-scrollbar {
   width: 12px;
 }

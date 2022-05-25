@@ -115,13 +115,13 @@ export default {
   },
   filters: {
     eok(val) {
-      if (val.length > 5)
+      if (val.length > 4)
         return (
-          val.substring(0, val.length - 5) +
+          val.substring(0, val.length - 4) +
           "." +
-          val.substring(val.length - 5, val.length - 4)
+          val.substring(val.length - 4, val.length - 3)
         );
-      else return "0." + val.substring(val.length - 5, val.length - 4);
+      else return "0." + val.substring(0, 1);
     },
   },
 };
