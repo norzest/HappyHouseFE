@@ -15,7 +15,7 @@
     </div>
     <div class="line"></div>
     <div v-html="article.content" class="content"></div>
-
+    <div class="line"></div>
     <div class="btnset">
       <div></div>
       <button @click="mvBoardList()">목록</button>
@@ -64,6 +64,7 @@ export default {
     mvBoardList() {
       this.$router.push({ name: "boardList" });
     },
+    registComment() {},
   },
   // filters: {
   //   time(val) {
@@ -117,6 +118,7 @@ export default {
 }
 .btnset {
   display: flex;
+  margin-top: 20px;
   justify-content: space-between;
 }
 .btnset button {
