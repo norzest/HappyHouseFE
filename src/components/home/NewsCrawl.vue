@@ -38,9 +38,9 @@
         </a>
       </div>
       <div class="news">
-        <a :href="news[8].link"
-          ><img :src="news[8].img" alt="" width="50px" />
-          <p>{{ news[8].title }}</p>
+        <a :href="news[7].link"
+          ><img :src="news[7].img" alt="" width="50px" />
+          <p>{{ news[7].title }}</p>
         </a>
       </div>
       <div class="news">

@@ -5,7 +5,7 @@
         name="comment"
         id="comment"
         v-model="myAptComment"
-        cols="30"
+        cols="28"
         rows="4"
       ></textarea>
       <button @click="registComment">작성</button>

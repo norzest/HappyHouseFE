@@ -97,7 +97,7 @@ export default {
             this.pgs.push(i);
           }
         } else {
-          for (var j = this.startPg; j <= this.endPg; j++) {
+          for (var j = 1; j <= this.endPg; j++) {
             this.pgs.push(j);
           }
         }
@@ -148,7 +148,7 @@ export default {
                 this.pgs.push(i);
               }
             } else {
-              for (var j = this.startPg; j <= this.endPg; j++) {
+              for (var j = 1; j <= this.endPg; j++) {
                 this.pgs.push(j);
               }
             }
@@ -193,7 +193,7 @@ export default {
                 this.pgs.push(i);
               }
             } else {
-              for (var j = this.startPg; j <= this.endPg; j++) {
+              for (var j = 1; j <= this.endPg; j++) {
                 this.pgs.push(j);
               }
             }
